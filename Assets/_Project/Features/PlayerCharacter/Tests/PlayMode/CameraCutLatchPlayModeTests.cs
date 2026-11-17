@@ -11,6 +11,7 @@ namespace FixedCameraPrototype.PlayerCharacter.Tests
     public class CameraCutLatchPlayModeTests : InputTestFixture
     {
         private const float k_directionTolerance = 0.01f;
+        private const float k_oppositeShotYawDegrees = 180.0f;
 
         private Gamepad m_gamepad;
         private Transform m_cameraTransform;
@@ -61,7 +62,7 @@ namespace FixedCameraPrototype.PlayerCharacter.Tests
             yield return null;
             Vector3 directionBeforeCut = m_inputBasis.ToWorldDirection(Vector2.up);
 
-            RotateCameraAndRaiseCut(180.0f);
+            RotateCameraAndRaiseCut(k_oppositeShotYawDegrees);
             yield return null;
 
             Assert.IsTrue(m_inputBasis.IsLatched);
@@ -73,7 +74,7 @@ namespace FixedCameraPrototype.PlayerCharacter.Tests
         {
             Set(m_gamepad.leftStick, Vector2.up);
             yield return null;
-            RotateCameraAndRaiseCut(180.0f);
+            RotateCameraAndRaiseCut(k_oppositeShotYawDegrees);
             yield return null;
 
             Set(m_gamepad.leftStick, Vector2.zero);
@@ -90,7 +91,7 @@ namespace FixedCameraPrototype.PlayerCharacter.Tests
         {
             yield return null;
 
-            RotateCameraAndRaiseCut(180.0f);
+            RotateCameraAndRaiseCut(k_oppositeShotYawDegrees);
             yield return null;
 
             Assert.IsFalse(m_inputBasis.IsLatched);

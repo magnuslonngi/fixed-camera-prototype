@@ -6,6 +6,8 @@ namespace FixedCameraPrototype.PlayerCharacter
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovement : MonoBehaviour
     {
+        private const float k_maximumInputMagnitude = 1.0f;
+
         [Header("References")]
         [SerializeField] private PlayerInputReader m_inputReader;
         [SerializeField] private CameraRelativeInputBasis m_inputBasis;
@@ -50,7 +52,7 @@ namespace FixedCameraPrototype.PlayerCharacter
             bool isBelowDeadzone = input.magnitude < m_inputBasis.InputDeadzone;
             DesiredDirection = isBelowDeadzone
                 ? Vector3.zero
-                : Vector3.ClampMagnitude(m_inputBasis.ToWorldDirection(input), 1.0f);
+                : Vector3.ClampMagnitude(m_inputBasis.ToWorldDirection(input), k_maximumInputMagnitude);
         }
 
         private void UpdateHorizontalVelocity(float deltaTime)

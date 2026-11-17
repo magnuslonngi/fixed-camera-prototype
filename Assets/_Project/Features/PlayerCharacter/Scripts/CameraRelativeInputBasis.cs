@@ -9,8 +9,12 @@ namespace FixedCameraPrototype.PlayerCharacter
         [SerializeField] private PlayerInputReader m_inputReader;
         [SerializeField] private Transform m_viewCameraTransform;
         [SerializeField] private CameraCutEventChannel m_cameraCutChannel;
-        [SerializeField, Range(0.0f, 1.0f)] private float m_inputDeadzone = 0.2f;
-        [SerializeField, Range(1.0f, 180.0f)] private float m_latchReleaseAngleDegrees = 35.0f;
+        [SerializeField]
+        [Range(0.0f, 1.0f)]
+        private float m_inputDeadzone = 0.2f;
+        [SerializeField]
+        [Range(1.0f, 180.0f)]
+        private float m_latchReleaseAngleDegrees = 35.0f;
 
         private InputBasisLatch m_latch;
         private Vector3 m_liveForward = Vector3.forward;
