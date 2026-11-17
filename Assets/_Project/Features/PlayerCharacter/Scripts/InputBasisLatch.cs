@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace FixedCameraPrototype.PlayerCharacter
 {
-    // Pure logic (no MonoBehaviour) so latch rules are unit-testable.
     // Holds the pre-cut camera basis while the stick keeps pushing the same way, so a camera cut
     // does not reverse the character. Released when the stick is let go or turns far enough.
     public class InputBasisLatch
