@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 49c7acab911881141a7e79973f7fec4b
+timeCreated: 1523886763
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116770
+  packageName: Cyber Girl
+  packageVersion: 1.4
+  assetPath: Assets/CyberGirl/FreeCam.cs
+  uploadId: 308771

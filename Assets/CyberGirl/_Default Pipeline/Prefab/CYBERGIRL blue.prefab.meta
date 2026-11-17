@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 319b91aaa676ce74e9d7da067ecd01b7
+timeCreated: 1541157662
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116770
+  packageName: Cyber Girl
+  packageVersion: 1.4
+  assetPath: Assets/CyberGirl/_Default Pipeline/Prefab/CYBERGIRL blue.prefab
+  uploadId: 308771

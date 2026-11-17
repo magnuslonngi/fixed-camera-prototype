@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "path": ".agents/rules",
+      "include_only": [
+        "architecture/ban-magic-numbers-string-identifiers.md",
+        "architecture/composition-over-inheritance.md",
+        "architecture/continuous-iterative-refactoring.md",
+        "architecture/decoupling-event-driven-presentation.md",
+        "architecture/feature-first-folder-structure.md",
+        "architecture/information-hiding-encapsulation.md",
+        "architecture/naming-is-architecture.md",
+        "architecture/self-documenting-code-intentional-comments.md",
+        "architecture/single-responsibility-principle.md",
+        "architecture/single-source-of-truth.md",
+        "conventions/cpp-unreal-conventions.md",
+        "conventions/csharp-unity-conventions.md",
+        "conventions/gdscript-godot-conventions.md"
+      ]
+    }
+  ]
+}

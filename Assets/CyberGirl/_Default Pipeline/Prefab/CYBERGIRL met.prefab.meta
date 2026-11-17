@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5ac93d59a583a2d4a90be2d6abc1916d
+timeCreated: 1541157654
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116770
+  packageName: Cyber Girl
+  packageVersion: 1.4
+  assetPath: Assets/CyberGirl/_Default Pipeline/Prefab/CYBERGIRL met.prefab
+  uploadId: 308771

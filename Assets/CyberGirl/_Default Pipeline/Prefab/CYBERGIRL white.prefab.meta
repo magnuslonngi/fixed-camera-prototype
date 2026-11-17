@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3ecaf929bae18c848ba7839f5d7d11cc
+timeCreated: 1541157660
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116770
+  packageName: Cyber Girl
+  packageVersion: 1.4
+  assetPath: Assets/CyberGirl/_Default Pipeline/Prefab/CYBERGIRL white.prefab
+  uploadId: 308771

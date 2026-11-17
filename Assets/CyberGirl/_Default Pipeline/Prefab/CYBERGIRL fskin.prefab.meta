@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b835cb5e92203d24f8672656111ea3a9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116770
+  packageName: Cyber Girl
+  packageVersion: 1.4
+  assetPath: Assets/CyberGirl/_Default Pipeline/Prefab/CYBERGIRL fskin.prefab
+  uploadId: 308771

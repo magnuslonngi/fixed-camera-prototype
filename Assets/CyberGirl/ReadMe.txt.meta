@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 365ea5718ae73484195cdec30f15d09e
+timeCreated: 1523919214
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116770
+  packageName: Cyber Girl
+  packageVersion: 1.4
+  assetPath: Assets/CyberGirl/ReadMe.txt
+  uploadId: 308771

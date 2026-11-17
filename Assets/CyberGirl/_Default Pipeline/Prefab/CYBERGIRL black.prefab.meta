@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 38419ce5688269e49983c552e074e70d
+timeCreated: 1541157656
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116770
+  packageName: Cyber Girl
+  packageVersion: 1.4
+  assetPath: Assets/CyberGirl/_Default Pipeline/Prefab/CYBERGIRL black.prefab
+  uploadId: 308771

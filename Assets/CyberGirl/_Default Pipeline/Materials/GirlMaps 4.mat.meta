@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cdafe684bb3e7374298f87478a7cf2fa
+timeCreated: 1523651546
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116770
+  packageName: Cyber Girl
+  packageVersion: 1.4
+  assetPath: Assets/CyberGirl/_Default Pipeline/Materials/GirlMaps 4.mat
+  uploadId: 308771

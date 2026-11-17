@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4735ece338ba70344b36718e2a5c81ca
+timeCreated: 1511264843
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116770
+  packageName: Cyber Girl
+  packageVersion: 1.4
+  assetPath: Assets/CyberGirl/_Default Pipeline/demoUIcanvas.prefab
+  uploadId: 308771

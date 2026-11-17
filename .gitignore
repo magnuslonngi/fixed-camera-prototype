@@ -136,3 +136,16 @@ crashlytics-build.properties
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Agent temporary files (screenshots, scratch scripts, local settings)
+/[Ss]creenshots/
+/.claude/settings.local.json
+/.claude/worktrees/
+/[Aa]ssets/[Tt]emp/
+/[Aa]ssets/[Tt]emp.meta
+/[Aa]ssets/[Ss]cratch/
+/[Aa]ssets/[Ss]cratch.meta
+*.agent-tmp.*
+
+# macOS
+.DS_Store

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f569319d1fca89342ae175aed73b45ef
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116770
+  packageName: Cyber Girl
+  packageVersion: 1.4
+  assetPath: Assets/CyberGirl/_Default Pipeline/Materials/enviro.mat
+  uploadId: 308771
