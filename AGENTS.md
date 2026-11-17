@@ -59,7 +59,8 @@ Enforced design principles across all game projects with implementations in **Un
 10. [Feature-First Folder Structure](.agents/rules/architecture/feature-first-folder-structure.md)
    - Organize by feature, not file type: `Features/<Feature>/` owns its scripts, prefabs/scenes, art, audio, data.
    - `Shared/` only for 2+ features; features never reference each other directly.
-   - One project root separate from third-party code; global scenes/levels; per-feature `Sandbox/`.
+   - One project root separate from third-party code; global `Scenes/` for shipping scenes/levels only.
+   - Per-feature `Sandbox/` is the mandatory home for every test scene, playground, and greybox asset.
    - Unity: one `.asmdef` per feature. Unreal: one game module with feature folders (modules only for plugins).
 
 ---
@@ -82,22 +83,31 @@ Detailed syntax, casing, layout, and language-specific rules:
 
 ---
 
-## 3. Testing & Editor Interaction (Mandatory)
+## 3. Editor Verification (Mandatory)
 
-All verification happens inside the running Unity Editor, driven through the **`unity-pipeline` skill** (`.agents/skills/unity-pipeline/`, backed by the installed `com.unity.pipeline` package). Load the skill before any compile, test, or Editor interaction.
+All verification happens by driving the running Unity Editor directly through the **`unity-pipeline` skill** (`.agents/skills/unity-pipeline/`, backed by the installed `com.unity.pipeline` package) and the **`unity-cli` skill**. Load the skill before any compile or Editor interaction.
 
-1. **Test Inside the Editor Only**
-   - Compile, run EditMode/PlayMode tests, enter Play Mode, and capture screenshots through the Editor via `unity command ...`.
+1. **No Unit Tests**
+   - Never write unit tests. Do not create EditMode/PlayMode test fixtures, `Tests/` folders, or test `.asmdef`s, and do not run `unity command test ...`.
+   - Behavior is verified by interacting with the Editor, not by test code.
+
+2. **Verify Inside the Editor Only**
+   - Compile with `unity command script recompile` / `script recompile_status`.
+   - Verify in the feature's Sandbox scene (`Features/<Feature>/Sandbox/<Feature>Sandbox.unity`): open it, enter Play Mode (`editor.playmode start`), inspect runtime state with `script eval`, capture screenshots, read the console, then `editor.playmode stop`.
    - Never verify by standalone `dotnet build`/`msbuild`, batch-mode Unity launches, or by reading code and assuming it works.
-   - A change is not done until it compiles cleanly in the Editor and its tests (or a Play Mode check) pass there.
+   - A change is not done until it compiles cleanly in the Editor and a Play Mode check in its Sandbox scene shows the expected behavior with no console errors.
 
-2. **Use the Skill, Not Ad-Hoc Tools**
-   - All Editor interaction (scene edits, running C#, inspecting objects, reading the console) goes through the `unity-pipeline` skill's commands.
+3. **Use the Skills, Not Ad-Hoc Tools**
+   - All Editor interaction (scene edits, running C#, inspecting objects, reading the console) goes through `unity-pipeline` commands (`script eval`, `script run`, `editor.playmode ...`).
    - Do not use the Unity MCP server or hand-edit `.unity`/`.prefab`/`.asset` YAML when a skill command can do it.
    - For tasks outside `unity-pipeline` scope (Editor/package/project management, API docs lookup), use the `unity-cli` skill.
 
-3. **Editor Unreachable**
-   - If the Editor or pipeline server is not reachable (`unity status --until-ready` fails), stop and ask the user to open the project. Do not fall back to out-of-Editor testing.
+4. **Sandbox Scenes, Never Global Scenes**
+   - Every test scene, playground, and greybox material is created in `Features/<Feature>/Sandbox/`, never in the global `Scenes/` folder.
+   - See [Feature-First Folder Structure](.agents/rules/architecture/feature-first-folder-structure.md).
 
-4. **Report Honestly**
-   - Report actual Editor results: compile errors, failing tests, and console errors with their output. Never claim a test passed without running it in the Editor.
+5. **Editor Unreachable**
+   - If the Editor or pipeline server is not reachable (`unity status --until-ready` fails), stop and ask the user to open the project. Do not fall back to out-of-Editor verification.
+
+6. **Report Honestly**
+   - Report actual Editor results: compile errors, console errors, and what Play Mode showed, with their output. Never claim something works without checking it in the Editor.
