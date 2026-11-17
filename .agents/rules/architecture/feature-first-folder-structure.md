@@ -28,12 +28,16 @@ Organize project files by **feature**, not by file type. Everything a feature ne
    - Features communicate through interfaces and events defined in `Shared/` (see [Decoupling & Event-Driven Presentation](decoupling-event-driven-presentation.md) and [Composition Over Inheritance](composition-over-inheritance.md)).
    - **Delete Test:** removing a feature folder must not break compilation or other features.
 
-5. **Scenes / Levels Are Global**
-   - Scenes and levels compose many features, so they live in one global folder (`Scenes/`, `levels/`, `Maps/`), not inside a feature.
+5. **Shipping Scenes / Levels Are Global**
+   - Shipping scenes and levels compose many features, so they live in one global folder (`Scenes/`, `levels/`, `Maps/`), not inside a feature.
+   - The global folder holds shipping scenes only. Never put test scenes, playgrounds, or greybox assets there.
 
-6. **Per-Feature `Sandbox/` for Experiments**
-   - Each feature may have a `Sandbox/` folder for test scenes and prototypes.
+6. **Per-Feature `Sandbox/` for Test Scenes (Mandatory)**
+   - Every test scene, playground, and prototype for a feature lives in that feature's `Sandbox/` folder, named `<Feature>Sandbox` (e.g. `Features/Combat/Sandbox/CombatSandbox.unity`).
+   - Greybox materials and throwaway assets used only by the sandbox live in `Sandbox/Materials/` (or similar) beside it.
+   - A sandbox scene may use other features' prefabs (e.g. the player) to exercise its feature.
    - Production code and content must never reference anything inside `Sandbox/`.
+   - Add a Sandbox `.asmdef` only when the sandbox contains scripts.
 
 ---
 
@@ -44,7 +48,7 @@ Organize project files by **feature**, not by file type. Everything a feature ne
 ```text
 Assets/
 ├── _Project/                         # Underscore sorts it to the top; all project content
-│   ├── Scenes/                       # Global: Boot, MainMenu, Level01
+│   ├── Scenes/                       # Global shipping scenes only: Boot, MainMenu, Level01
 │   ├── Shared/
 │   │   ├── Scripts/
 │   │   │   └── MyGame.Shared.asmdef
@@ -61,7 +65,9 @@ Assets/
 │       │   ├── Audio/
 │       │   ├── Data/                 # ScriptableObjects
 │       │   └── Sandbox/
-│       │       └── MyGame.Combat.Sandbox.asmdef  # Nothing references this
+│       │       ├── CombatSandbox.unity           # Test scene for this feature
+│       │       ├── Materials/                    # Greybox materials used only here
+│       │       └── MyGame.Combat.Sandbox.asmdef  # Only if sandbox has scripts; nothing references it
 │       └── Inventory/
 └── ThirdPartyPlugin/                 # Vendor content stays untouched (or in Packages/)
 ```
@@ -156,4 +162,6 @@ MyGame/
 - ❌ `Shared/` (or `Common/`, `Utils/`) growing into a dumping ground for code only one feature uses.
 - ❌ Your own files inside vendor folders, or vendor files moved into `Features/`.
 - ❌ Production code referencing a `Sandbox/` asset.
+- ❌ Test scenes, playgrounds, or greybox materials in the global `Scenes/` folder instead of `Features/<Feature>/Sandbox/`.
+- ❌ Unit test folders (`Tests/`) or test assemblies; verification is done by driving the Editor in the Sandbox scene.
 - ❌ A level or scene placed inside one feature's folder when it composes several features.

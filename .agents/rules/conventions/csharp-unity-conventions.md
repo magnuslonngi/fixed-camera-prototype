@@ -71,7 +71,9 @@ Follows [Feature-First Folder Structure](../architecture/feature-first-folder-st
 | **Feature asmdef** | `<Project>.<Feature>` in `Features/<Feature>/Scripts/` | `MyGame.Combat.asmdef` |
 | **Shared asmdef** | `<Project>.Shared` | `MyGame.Shared.asmdef` |
 | **Editor asmdef** | `<Project>.<Feature>.Editor`, Editor platform only | `MyGame.Combat.Editor.asmdef` |
-| **Sandbox asmdef** | `<Project>.<Feature>.Sandbox`, referenced by nothing | `MyGame.Combat.Sandbox.asmdef` |
+| **Sandbox scene** | `Features/<Feature>/Sandbox/<Feature>Sandbox.unity` | `CombatSandbox.unity` |
+| **Sandbox asmdef** | `<Project>.<Feature>.Sandbox`, only if sandbox has scripts, referenced by nothing | `MyGame.Combat.Sandbox.asmdef` |
+| **Tests** | None. No test folders or test asmdefs | - |
 | **Namespace** | Matches the asmdef / folder | `namespace MyGame.Combat` |
 | **File & folder names** | `PascalCase`, no spaces | `WeaponPickup.cs` |
 
