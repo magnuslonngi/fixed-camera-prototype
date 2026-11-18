@@ -1,0 +1,67 @@
+.indicator-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Zero-size anchor centered on the projected world point; children center on it. */
+.indicator {
+    position: absolute;
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.indicator--noticed,
+.indicator--focused {
+    display: flex;
+}
+
+.indicator__dot,
+.indicator__prompt {
+    position: absolute;
+    display: none;
+}
+
+.indicator__dot {
+    width: 12px;
+    height: 12px;
+    left: -6px;
+    top: -6px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.6);
+}
+
+.indicator__prompt {
+    width: 44px;
+    height: 44px;
+    left: -22px;
+    top: -22px;
+    border-radius: 22px;
+    background-color: rgba(20, 20, 20, 0.8);
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.95);
+    align-items: center;
+    justify-content: center;
+}
+
+.indicator__prompt-label {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin: 0;
+    padding: 0;
+}
+
+.indicator--noticed > .indicator__dot {
+    display: flex;
+}
+
+.indicator--focused > .indicator__prompt {
+    display: flex;
+}
