@@ -7,7 +7,6 @@ namespace FixedCameraPrototype.PlayerCharacter
     public class CameraRelativeInputBasis : MonoBehaviour
     {
         [SerializeField] private PlayerInputReader m_inputReader;
-        [SerializeField] private Transform m_viewCameraTransform;
         [SerializeField] private CameraCutEventChannel m_cameraCutChannel;
         [SerializeField]
         [Range(0.0f, 1.0f)]
@@ -15,6 +14,8 @@ namespace FixedCameraPrototype.PlayerCharacter
         [SerializeField]
         [Range(1.0f, 180.0f)]
         private float m_latchReleaseAngleDegrees = 35.0f;
+
+        private Transform m_viewCameraTransform;
 
         private InputBasisLatch m_latch;
         private Vector3 m_liveForward = Vector3.forward;
@@ -26,6 +27,7 @@ namespace FixedCameraPrototype.PlayerCharacter
         private void Awake()
         {
             m_latch = new InputBasisLatch(m_inputDeadzone, m_latchReleaseAngleDegrees);
+            m_viewCameraTransform = Camera.main.transform;
         }
 
         private void OnEnable()
