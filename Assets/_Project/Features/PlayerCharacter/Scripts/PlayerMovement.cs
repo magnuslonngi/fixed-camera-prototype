@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using FixedCameraPrototype.Shared;
 
 namespace FixedCameraPrototype.PlayerCharacter
 {
@@ -11,6 +12,7 @@ namespace FixedCameraPrototype.PlayerCharacter
         [Header("References")]
         [SerializeField] private PlayerInputReader m_inputReader;
         [SerializeField] private CameraRelativeInputBasis m_inputBasis;
+        [SerializeField] private MovementLock m_movementLock;
 
         [Header("Speed (meters per second)")]
         [SerializeField] private float m_walkSpeed = 1.8f;
@@ -48,6 +50,12 @@ namespace FixedCameraPrototype.PlayerCharacter
 
         private void UpdateDesiredDirection()
         {
+            if (m_movementLock.IsLocked)
+            {
+                DesiredDirection = Vector3.zero;
+                return;
+            }
+
             Vector2 input = m_inputReader.MoveInput;
             bool isBelowDeadzone = input.magnitude < m_inputBasis.InputDeadzone;
             DesiredDirection = isBelowDeadzone

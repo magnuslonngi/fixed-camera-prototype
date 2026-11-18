@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 2928411535980391765}
   - component: {fileID: 281492261375977287}
   - component: {fileID: 5815555274386628915}
+  - component: {fileID: 3438504799321581782}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerMovement
   m_inputReader: {fileID: 7995123814289927137}
   m_inputBasis: {fileID: 2928411535980391765}
+  m_movementLock: {fileID: 3438504799321581782}
   m_walkSpeed: 1.5
   m_runSpeed: 3
   m_accelerationRate: 20
@@ -216,6 +218,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerRotation
   m_playerMovement: {fileID: 281492261375977287}
   m_turnSpeedDegreesPerSecond: 540
+--- !u!114 &3438504799321581782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a4abcb10f1441a2bbc358ac17b93c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.MovementLock
 --- !u!1 &9088454171901546614
 GameObject:
   m_ObjectHideFlags: 0
