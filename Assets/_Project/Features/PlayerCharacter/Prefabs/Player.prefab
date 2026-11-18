@@ -179,9 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3823f1b8173c44890b0b9171ec04f68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.CameraRelativeInputBasis
-  m_inputReader: {fileID: 0}
-  m_viewCameraTransform: {fileID: 0}
-  m_cameraCutChannel: {fileID: 0}
+  m_inputReader: {fileID: 7995123814289927137}
+  m_cameraCutChannel: {fileID: 11400000, guid: 654f88547830c459baa75671a3b16efa, type: 2}
   m_inputDeadzone: 0.2
   m_latchReleaseAngleDegrees: 35
 --- !u!114 &281492261375977287
@@ -198,8 +197,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerMovement
   m_inputReader: {fileID: 7995123814289927137}
   m_inputBasis: {fileID: 2928411535980391765}
-  m_walkSpeed: 1.8
-  m_runSpeed: 4
+  m_walkSpeed: 1.5
+  m_runSpeed: 3
   m_accelerationRate: 20
   m_decelerationRate: 30
   m_gravity: 20

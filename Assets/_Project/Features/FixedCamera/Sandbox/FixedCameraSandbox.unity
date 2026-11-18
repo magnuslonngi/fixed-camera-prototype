@@ -1141,18 +1141,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2928411535980391765, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
-      propertyPath: m_inputReader
-      value: 
-      objectReference: {fileID: 866982872}
-    - target: {fileID: 2928411535980391765, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
-      propertyPath: m_cameraCutChannel
-      value: 
-      objectReference: {fileID: 11400000, guid: 654f88547830c459baa75671a3b16efa, type: 2}
-    - target: {fileID: 2928411535980391765, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
-      propertyPath: m_viewCameraTransform
-      value: 
-      objectReference: {fileID: 2036438870}
     - target: {fileID: 4570297085233051870, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1207,17 +1195,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5548434985695489100, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
   m_PrefabInstance: {fileID: 866982870}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &866982872 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7995123814289927137, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
-  m_PrefabInstance: {fileID: 866982870}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b644730770d9f45e4ba968b5ef3f2ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerInputReader
 --- !u!1 &892791863
 GameObject:
   m_ObjectHideFlags: 0
