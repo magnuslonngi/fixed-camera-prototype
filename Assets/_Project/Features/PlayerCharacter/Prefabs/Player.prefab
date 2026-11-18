@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 281492261375977287}
   - component: {fileID: 5815555274386628915}
   - component: {fileID: 5600092408954024891}
+  - component: {fileID: 8577529181057085354}
+  - component: {fileID: 5000406575286090910}
+  - component: {fileID: 5750023640586985317}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -138,6 +141,45 @@ MonoBehaviour:
   m_playerMovement: {fileID: 281492261375977287}
   m_animator: {fileID: 9068293576057543768}
   m_speedDampSeconds: 0.1
+--- !u!114 &8577529181057085354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4414e11ec222e41128443df67ab7c728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.InteractionInputReader
+  m_interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &5000406575286090910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab7029514a5b4ba7bc880baab8ef180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.InteractionTargetSelector
+--- !u!114 &5750023640586985317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f30329b871d946b7ab0a1a8a0dc1306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.PlayerInteractor
+  m_inputReader: {fileID: 8577529181057085354}
+  m_targetSelector: {fileID: 5000406575286090910}
 --- !u!1001 &862341464474245101
 PrefabInstance:
   m_ObjectHideFlags: 0

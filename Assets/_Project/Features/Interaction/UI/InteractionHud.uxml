@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="InteractionIndicator.uss" />
+    <ui:VisualElement name="indicator-layer" class="indicator-layer" picking-mode="Ignore" />
+</ui:UXML>
