@@ -386,6 +386,34 @@ PrefabInstance:
       propertyPath: m_runSpeed
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5299645380067319004, guid: ab1713eafb4be4ef38be4d05b6075b80, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299645380067319004, guid: ab1713eafb4be4ef38be4d05b6075b80, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299645380067319004, guid: ab1713eafb4be4ef38be4d05b6075b80, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299645380067319004, guid: ab1713eafb4be4ef38be4d05b6075b80, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067661437614200664, guid: ab1713eafb4be4ef38be4d05b6075b80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067661437614200664, guid: ab1713eafb4be4ef38be4d05b6075b80, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.259
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067661437614200664, guid: ab1713eafb4be4ef38be4d05b6075b80, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.006
+      objectReference: {fileID: 0}
     - target: {fileID: 8510054257538491193, guid: ab1713eafb4be4ef38be4d05b6075b80, type: 3}
       propertyPath: m_shotAssistHalfAngleDegrees
       value: 15

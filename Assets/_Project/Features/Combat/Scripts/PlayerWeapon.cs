@@ -66,7 +66,9 @@ namespace FixedCameraPrototype.Combat
             }
 
             Vector3 endPoint = didHit ? hit.point : origin + (finalDirection * m_rangeMeters);
-            OnShotFired?.Invoke(new ShotResult(origin, rawDirection, finalDirection, endPoint, didHit));
+            Vector3 hitNormal = didHit ? hit.normal : -finalDirection;
+            Collider hitCollider = didHit ? hit.collider : null;
+            OnShotFired?.Invoke(new ShotResult(origin, rawDirection, finalDirection, endPoint, didHit, hitNormal, hitCollider));
         }
     }
 }
