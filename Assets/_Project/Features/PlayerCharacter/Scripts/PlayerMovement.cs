@@ -8,6 +8,10 @@ namespace FixedCameraPrototype.PlayerCharacter
     public class PlayerMovement : MonoBehaviour
     {
         private const float k_maximumInputMagnitude = 1.0f;
+        private const float k_idleBlendValue = 0.0f;
+        // Must match the Walk threshold in the PlayerCharacter Locomotion blend tree.
+        private const float k_walkBlendValue = 0.5f;
+        private const float k_runBlendValue = 1.0f;
 
         [Header("References")]
         [SerializeField] private PlayerInputReader m_inputReader;
@@ -26,7 +30,7 @@ namespace FixedCameraPrototype.PlayerCharacter
         private float m_verticalVelocity;
 
         public Vector3 DesiredDirection { get; private set; }
-        public float NormalizedSpeed => m_runSpeed > 0.0f ? m_horizontalVelocity.magnitude / m_runSpeed : 0.0f;
+        public float NormalizedSpeed => CalculateNormalizedSpeed(m_horizontalVelocity.magnitude);
         public bool IsRunning => m_inputReader.IsSprintHeld && DesiredDirection.sqrMagnitude > 0.0f;
 
         public event Action<float, bool> OnLocomotionChanged;
@@ -46,6 +50,16 @@ namespace FixedCameraPrototype.PlayerCharacter
             m_characterController.Move(displacement);
 
             OnLocomotionChanged?.Invoke(NormalizedSpeed, IsRunning);
+        }
+
+        private float CalculateNormalizedSpeed(float currentSpeed)
+        {
+            if (currentSpeed < m_walkSpeed)
+            {
+                return Mathf.Lerp(k_idleBlendValue, k_walkBlendValue, Mathf.InverseLerp(0.0f, m_walkSpeed, currentSpeed));
+            }
+
+            return Mathf.Lerp(k_walkBlendValue, k_runBlendValue, Mathf.InverseLerp(m_walkSpeed, m_runSpeed, currentSpeed));
         }
 
         private void UpdateDesiredDirection()
