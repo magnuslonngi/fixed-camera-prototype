@@ -5,6 +5,7 @@
             <ui:Label text="Inventory" class="inventory-panel__title" picking-mode="Ignore" />
             <ui:VisualElement name="item-list" class="inventory-panel__list" picking-mode="Ignore" />
             <ui:Label name="empty-label" text="No items" class="inventory-panel__empty" picking-mode="Ignore" />
+            <ui:Label name="description-label" class="inventory-panel__description" picking-mode="Ignore" />
             <ui:Label name="feedback-label" class="inventory-panel__feedback" picking-mode="Ignore" />
             <ui:Label name="hint-label" text="W/S select   Enter use   Esc cancel" class="inventory-panel__hint" picking-mode="Ignore" />
         </ui:VisualElement>

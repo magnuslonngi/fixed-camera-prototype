@@ -30,6 +30,10 @@ GameObject:
   - component: {fileID: 1484490241657161858}
   - component: {fileID: 584652383347453004}
   - component: {fileID: 7025627472609839132}
+  - component: {fileID: 690205619261114166}
+  - component: {fileID: 8575984104878774790}
+  - component: {fileID: 3737307921566373050}
+  - component: {fileID: 4486835765307518655}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -226,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FixedCameraPrototype.Combat::FixedCameraPrototype.Combat.PlayerAim
   m_inputReader: {fileID: 8789931306653791118}
+  m_weapon: {fileID: 6889546131209826840}
   m_movementLock: {fileID: 3438504799321581782}
   m_aimAssist: {fileID: 8297573463254367355}
   m_aimOrigin: {fileID: 7065163129296247400}
@@ -249,6 +254,8 @@ MonoBehaviour:
   m_playerAim: {fileID: 3405102660305993713}
   m_aimAssist: {fileID: 8297573463254367355}
   m_muzzle: {fileID: 7065163129296247400}
+  m_equipmentSlot: {fileID: 690205619261114166}
+  m_weaponItem: {fileID: 11400000, guid: 4b43a1deaa7054462b034f5b73d3afd6, type: 2}
   m_damage: 10
   m_rangeMeters: 20
   m_secondsBetweenShots: 0.4
@@ -395,6 +402,63 @@ MonoBehaviour:
   m_inventory: {fileID: 1484490241657161858}
   m_inputReader: {fileID: 584652383347453004}
   m_controlLock: {fileID: 2579354574389170811}
+  m_inventoryInputReader: {fileID: 8575984104878774790}
+  m_actionPerformer: {fileID: 3737307921566373050}
+  m_equipmentSlot: {fileID: 690205619261114166}
+--- !u!114 &690205619261114166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1169f6725dbd0431c84819e87e81fd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.EquipmentSlot
+--- !u!114 &8575984104878774790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1130d5fa1033b4e3d8e2a0002a45469e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Inventory::FixedCameraPrototype.Inventory.InventoryInputReader
+  m_openInventoryAction: {fileID: 3929989998588191394, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_controlLock: {fileID: 2579354574389170811}
+--- !u!114 &3737307921566373050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893d974b9baaa44c4a419ddbe68ab07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Inventory::FixedCameraPrototype.Inventory.ItemActionPerformer
+  m_equipmentSlot: {fileID: 690205619261114166}
+--- !u!114 &4486835765307518655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71d29714432b74b0886f5fb357236ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Combat::FixedCameraPrototype.Combat.WeaponVisibilityPresenter
+  m_weapon: {fileID: 6889546131209826840}
+  m_equipmentSlot: {fileID: 690205619261114166}
+  m_weaponVisual: {fileID: 6007752685671848194}
 --- !u!1 &6584575475412108315
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +709,11 @@ PrefabInstance:
       addedObject: {fileID: 6507585549907761781}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 726cd21416e138640a4f2575ffe04009, type: 3}
+--- !u!1 &6007752685671848194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4043241439066821443, guid: 726cd21416e138640a4f2575ffe04009, type: 3}
+  m_PrefabInstance: {fileID: 7729207847265307201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6346701692644279224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3699612562426939897, guid: 726cd21416e138640a4f2575ffe04009, type: 3}

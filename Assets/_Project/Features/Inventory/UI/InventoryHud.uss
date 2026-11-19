@@ -85,3 +85,19 @@
 .inventory-panel--selecting > .inventory-panel__hint {
     display: flex;
 }
+
+.inventory-panel__description {
+    display: none;
+    max-width: 360px;
+    white-space: normal;
+    color: rgb(235, 225, 200);
+    font-size: 15px;
+    margin: 8px 0 0 0;
+    padding: 6px 8px;
+    border-top-width: 1px;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.inventory-panel__description--visible {
+    display: flex;
+}

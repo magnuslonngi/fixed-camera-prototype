@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: SandboxKey
   m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.ItemDefinition
   m_displayName: Rusty Key
+  m_useAction: 2
+  m_descriptionText: Just a rusty key. It must open a door around here.

@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: SandboxNote
   m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.ItemDefinition
   m_displayName: Torn Note
+  m_useAction: 1
+  m_descriptionText: '"The storage room key is with the rest of my things. Don''t
+    let anyone in."'

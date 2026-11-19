@@ -10,6 +10,7 @@ namespace FixedCameraPrototype.Combat
 
         [Header("References")]
         [SerializeField] private CombatInputReader m_inputReader;
+        [SerializeField] private PlayerWeapon m_weapon;
         [SerializeField] private MovementLock m_movementLock;
         [SerializeField] private AimAssist m_aimAssist;
         [SerializeField] private Transform m_aimOrigin;
@@ -32,9 +33,10 @@ namespace FixedCameraPrototype.Combat
 
         private void Update()
         {
-            if (m_inputReader.IsAimHeld != m_isAiming)
+            bool isAimRequested = CanAim();
+            if (isAimRequested != m_isAiming)
             {
-                SetAiming(m_inputReader.IsAimHeld);
+                SetAiming(isAimRequested);
             }
 
             if (m_isAiming)
@@ -131,6 +133,11 @@ namespace FixedCameraPrototype.Combat
                     m_snapTurnSpeedDegreesPerSecond * deltaTime);
                 m_isSnapping = transform.rotation != m_snapRotation;
             }
+        }
+
+        private bool CanAim()
+        {
+            return m_inputReader.IsAimHeld && m_weapon.IsEquipped;
         }
 
         private float ResolvePitchDegrees()

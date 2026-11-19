@@ -13,11 +13,16 @@ namespace FixedCameraPrototype.Inventory
         [SerializeField] private PlayerInventory m_inventory;
         [SerializeField] private ItemSelectionInputReader m_inputReader;
         [SerializeField] private CharacterControlLock m_controlLock;
+        [SerializeField] private InventoryInputReader m_inventoryInputReader;
+        [SerializeField] private ItemActionPerformer m_actionPerformer;
+        [SerializeField] private EquipmentSlot m_equipmentSlot;
 
         private IItemUseTarget m_activeTarget;
         private int m_selectedIndex = k_noSelectionIndex;
+        private bool m_isOpen;
 
-        public bool IsActive => m_activeTarget != null;
+        public bool IsActive => m_isOpen;
+        public bool IsBrowsing => m_isOpen && m_activeTarget == null;
         public int SelectedIndex => m_selectedIndex;
         public ItemDefinition SelectedItem => HasValidSelection() ? m_inventory.Items[m_selectedIndex] : null;
 
@@ -37,6 +42,7 @@ namespace FixedCameraPrototype.Inventory
             m_inputReader.OnNavigateDownPressed += SelectNext;
             m_inputReader.OnSubmitPressed += UseSelectedItem;
             m_inputReader.OnCancelPressed += EndSelection;
+            m_inventoryInputReader.OnOpenInventoryPressed += OpenInventory;
         }
 
         private void OnDisable()
@@ -45,16 +51,33 @@ namespace FixedCameraPrototype.Inventory
             m_inputReader.OnNavigateDownPressed -= SelectNext;
             m_inputReader.OnSubmitPressed -= UseSelectedItem;
             m_inputReader.OnCancelPressed -= EndSelection;
+            m_inventoryInputReader.OnOpenInventoryPressed -= OpenInventory;
             EndSelection();
         }
 
         public void BeginItemSelection(IItemUseTarget target)
         {
-            if (IsActive || target == null)
+            if (target == null)
             {
                 return;
             }
 
+            Open(target);
+        }
+
+        public void OpenInventory()
+        {
+            Open(null);
+        }
+
+        private void Open(IItemUseTarget target)
+        {
+            if (IsActive)
+            {
+                return;
+            }
+
+            m_isOpen = true;
             m_activeTarget = target;
             m_controlLock.AddLock();
             m_inputReader.enabled = true;
@@ -69,6 +92,7 @@ namespace FixedCameraPrototype.Inventory
                 return;
             }
 
+            m_isOpen = false;
             m_activeTarget = null;
             m_inputReader.enabled = false;
             m_controlLock.RemoveLock();
@@ -106,10 +130,21 @@ namespace FixedCameraPrototype.Inventory
                 return;
             }
 
+            if (IsBrowsing)
+            {
+                m_actionPerformer.Perform(selectedItem);
+                return;
+            }
+
             if (!m_activeTarget.TryUseItem(selectedItem))
             {
                 OnItemRejected?.Invoke(selectedItem);
                 return;
+            }
+
+            if (m_equipmentSlot.IsEquipped(selectedItem))
+            {
+                m_equipmentSlot.Unequip();
             }
 
             m_inventory.TryRemoveItem(selectedItem);
