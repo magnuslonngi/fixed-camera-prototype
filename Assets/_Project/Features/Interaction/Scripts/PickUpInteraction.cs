@@ -1,12 +1,16 @@
 using System;
+using FixedCameraPrototype.Shared;
 using UnityEngine;
 
 namespace FixedCameraPrototype.Interaction
 {
-    // Placeholder: removes the object from the world. An inventory will subscribe to OnPickedUp later.
+    // Hands the item to the instigator's IItemReceiver. The object only leaves the world once the
+    // item is actually stored, so an instigator without an inventory cannot make it vanish.
     [RequireComponent(typeof(Interactable))]
     public class PickUpInteraction : MonoBehaviour
     {
+        [SerializeField] private ItemDefinition m_item;
+
         private Interactable m_interactable;
 
         public event Action<GameObject> OnPickedUp;
@@ -28,6 +32,11 @@ namespace FixedCameraPrototype.Interaction
 
         private void HandleInteracted(GameObject instigator)
         {
+            if (!instigator.TryGetComponent(out IItemReceiver itemReceiver) || !itemReceiver.TryAddItem(m_item))
+            {
+                return;
+            }
+
             OnPickedUp?.Invoke(instigator);
             gameObject.SetActive(false);
         }

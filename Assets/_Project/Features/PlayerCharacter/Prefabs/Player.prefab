@@ -26,6 +26,10 @@ GameObject:
   - component: {fileID: 5641255161901334299}
   - component: {fileID: 2204000498529362447}
   - component: {fileID: 3419517338055769460}
+  - component: {fileID: 2579354574389170811}
+  - component: {fileID: 1484490241657161858}
+  - component: {fileID: 584652383347453004}
+  - component: {fileID: 7025627472609839132}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -90,6 +94,7 @@ MonoBehaviour:
   m_moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_tankMoveAction: {fileID: 561843132517769997, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_sprintAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_controlLock: {fileID: 2579354574389170811}
 --- !u!114 &2928411535980391765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +189,7 @@ MonoBehaviour:
   m_aimAction: {fileID: -4226782285583997548, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_fireAction: {fileID: -8141908710578739964, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_aimAdjustAction: {fileID: -1364400786475027407, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_controlLock: {fileID: 2579354574389170811}
 --- !u!114 &8297573463254367355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +300,101 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.Combat::FixedCameraPrototype.Combat.HitBloodPresenter
   m_weapon: {fileID: 6889546131209826840}
   m_bloodSplatterPrefab: {fileID: 8265076748199746843, guid: 55d47920f3b4b4e799186c19832ca4a9, type: 3}
+--- !u!114 &5641255161901334299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4414e11ec222e41128443df67ab7c728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.InteractionInputReader
+  m_interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_controlLock: {fileID: 2579354574389170811}
+--- !u!114 &2204000498529362447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab7029514a5b4ba7bc880baab8ef180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.InteractionTargetSelector
+  m_controlLock: {fileID: 2579354574389170811}
+--- !u!114 &3419517338055769460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f30329b871d946b7ab0a1a8a0dc1306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.PlayerInteractor
+  m_inputReader: {fileID: 5641255161901334299}
+  m_targetSelector: {fileID: 2204000498529362447}
+--- !u!114 &2579354574389170811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b76c3c4ddd5542448198a860cb0ab97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.CharacterControlLock
+--- !u!114 &1484490241657161858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf47b9fe530b4426a2c20670c8ac798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Inventory::FixedCameraPrototype.Inventory.PlayerInventory
+--- !u!114 &584652383347453004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d0b1328d0b6400eb4693ac6e4342e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Inventory::FixedCameraPrototype.Inventory.ItemSelectionInputReader
+  m_navigateAction: {fileID: -8784545083839296357, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_submitAction: {fileID: 392368643174621059, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_cancelAction: {fileID: 7727032971491509709, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &7025627472609839132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1d9313dbfcf4f318db3c1a54a9dc73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Inventory::FixedCameraPrototype.Inventory.ItemSelectionSession
+  m_inventory: {fileID: 1484490241657161858}
+  m_inputReader: {fileID: 584652383347453004}
+  m_controlLock: {fileID: 2579354574389170811}
 --- !u!1 &6584575475412108315
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,42 +745,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ac20ac7ae44be4f6f84283e1134c5ab0, type: 3}
   m_PrefabInstance: {fileID: 9215680615081221289}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5641255161901334299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4570297085233051870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4414e11ec222e41128443df67ab7c728, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.InteractionInputReader
-  m_interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
---- !u!114 &2204000498529362447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4570297085233051870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab7029514a5b4ba7bc880baab8ef180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.InteractionTargetSelector
---- !u!114 &3419517338055769460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4570297085233051870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f30329b871d946b7ab0a1a8a0dc1306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.PlayerInteractor
-  m_inputReader: {fileID: 5641255161901334299}
-  m_targetSelector: {fileID: 2204000498529362447}

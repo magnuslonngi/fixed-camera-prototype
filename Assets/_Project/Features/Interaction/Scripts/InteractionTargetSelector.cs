@@ -1,4 +1,5 @@
 using System;
+using FixedCameraPrototype.Shared;
 using UnityEngine;
 
 namespace FixedCameraPrototype.Interaction
@@ -7,19 +8,34 @@ namespace FixedCameraPrototype.Interaction
     // object height (shelf vs floor) does not change priority.
     public class InteractionTargetSelector : MonoBehaviour
     {
-        private Interactable m_focusedInteractable;
+        [SerializeField] private CharacterControlLock m_controlLock;
 
-        public event Action<Interactable> OnFocusChanged;
+        private Interactable m_focusedInteractable;
 
         public Interactable FocusedInteractable => m_focusedInteractable;
 
+        public event Action<Interactable> OnFocusChanged;
+
+        // While another system owns the character (e.g. inventory selection), nothing is focusable,
+        // so indicators hide and stale focus cannot be interacted with on unlock.
         private void Update()
         {
+            if (m_controlLock.IsLocked)
+            {
+                ClearFocusAndIndications();
+                return;
+            }
+
             UpdateFocusedInteractable(FindClosestInteractableInInteractRange());
             UpdateIndicationStates();
         }
 
         private void OnDisable()
+        {
+            ClearFocusAndIndications();
+        }
+
+        private void ClearFocusAndIndications()
         {
             UpdateFocusedInteractable(null);
             foreach (Interactable interactable in InteractableRegistry.RegisteredInteractables)

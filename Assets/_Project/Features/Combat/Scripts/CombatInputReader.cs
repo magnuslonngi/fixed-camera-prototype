@@ -1,4 +1,5 @@
 using System;
+using FixedCameraPrototype.Shared;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ namespace FixedCameraPrototype.Combat
         [SerializeField] private InputActionReference m_aimAction;
         [SerializeField] private InputActionReference m_fireAction;
         [SerializeField] private InputActionReference m_aimAdjustAction;
+        [SerializeField] private CharacterControlLock m_controlLock;
 
         public bool IsAimHeld => m_aimAction.action.IsPressed();
         public Vector2 AimAdjustInput => m_aimAdjustAction.action.ReadValue<Vector2>();
@@ -17,23 +19,42 @@ namespace FixedCameraPrototype.Combat
 
         private void OnEnable()
         {
-            m_aimAction.action.Enable();
-            m_fireAction.action.Enable();
-            m_aimAdjustAction.action.Enable();
             m_fireAction.action.performed += HandleFirePerformed;
+            m_controlLock.OnLockStateChanged += HandleControlLockStateChanged;
+            SetActionsEnabled(!m_controlLock.IsLocked);
         }
 
         private void OnDisable()
         {
             m_fireAction.action.performed -= HandleFirePerformed;
-            m_aimAction.action.Disable();
-            m_fireAction.action.Disable();
-            m_aimAdjustAction.action.Disable();
+            m_controlLock.OnLockStateChanged -= HandleControlLockStateChanged;
+            SetActionsEnabled(false);
         }
 
         private void HandleFirePerformed(InputAction.CallbackContext context)
         {
             OnFirePressed?.Invoke();
+        }
+
+        private void HandleControlLockStateChanged(bool isLocked)
+        {
+            SetActionsEnabled(!isLocked);
+        }
+
+        private void SetActionsEnabled(bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                m_aimAction.action.Enable();
+                m_fireAction.action.Enable();
+                m_aimAdjustAction.action.Enable();
+            }
+            else
+            {
+                m_aimAction.action.Disable();
+                m_fireAction.action.Disable();
+                m_aimAdjustAction.action.Disable();
+            }
         }
     }
 }
