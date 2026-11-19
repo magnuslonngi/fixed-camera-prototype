@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerInputReader
   m_moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_tankMoveAction: {fileID: 561843132517769997, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_sprintAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &2928411535980391765
 MonoBehaviour:
@@ -111,6 +112,7 @@ MonoBehaviour:
   m_movementLock: {fileID: 3438504799321581782}
   m_walkSpeed: 1.5
   m_runSpeed: 3
+  m_backwardWalkSpeed: 1.2
   m_accelerationRate: 20
   m_decelerationRate: 30
   m_gravity: 20
@@ -128,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerRotation
   m_playerMovement: {fileID: 281492261375977287}
   m_turnSpeedDegreesPerSecond: 540
+  m_tankTurnSpeedDegreesPerSecond: 150
 --- !u!114 &3438504799321581782
 MonoBehaviour:
   m_ObjectHideFlags: 0

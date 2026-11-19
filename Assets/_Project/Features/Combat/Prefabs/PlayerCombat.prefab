@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7995123814289927137, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
+      propertyPath: m_tankMoveAction
+      value: 
+      objectReference: {fileID: 561843132517769997, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -207,6 +211,7 @@ MonoBehaviour:
   m_aimAssist: {fileID: 8510054257538491193}
   m_playerWeapon: {fileID: 9011236847157150872}
   m_shotLineSeconds: 1.5
+  m_isSnapPreviewEnabled: 1
 --- !u!114 &1899134130339142574 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3438504799321581782, guid: 12be7c3271f8d441eba169221ccada56, type: 3}

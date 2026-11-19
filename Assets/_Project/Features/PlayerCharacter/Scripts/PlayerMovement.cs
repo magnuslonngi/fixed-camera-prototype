@@ -21,6 +21,7 @@ namespace FixedCameraPrototype.PlayerCharacter
         [Header("Speed (meters per second)")]
         [SerializeField] private float m_walkSpeed = 1.8f;
         [SerializeField] private float m_runSpeed = 4.0f;
+        [SerializeField] private float m_backwardWalkSpeed = 1.2f;
         [SerializeField] private float m_accelerationRate = 20.0f;
         [SerializeField] private float m_decelerationRate = 30.0f;
         [SerializeField] private float m_gravity = 20.0f;
@@ -30,8 +31,16 @@ namespace FixedCameraPrototype.PlayerCharacter
         private float m_verticalVelocity;
 
         public Vector3 DesiredDirection { get; private set; }
-        public float NormalizedSpeed => CalculateNormalizedSpeed(m_horizontalVelocity.magnitude);
-        public bool IsRunning => m_inputReader.IsSprintHeld && DesiredDirection.sqrMagnitude > 0.0f;
+        public float TankTurnInput { get; private set; }
+        public float TankThrottleInput { get; private set; }
+        public float NormalizedSpeed => IsMovingBackward
+            ? -CalculateBackwardNormalizedSpeed(m_horizontalVelocity.magnitude)
+            : CalculateNormalizedSpeed(m_horizontalVelocity.magnitude);
+        public bool IsRunning => m_inputReader.IsSprintHeld && (DesiredDirection.sqrMagnitude > 0.0f || TankThrottleInput > 0.0f);
+
+        // Camera-relative input faces the player along its movement, so only tank reversing walks backward.
+        private bool IsMovingBackward => DesiredDirection.sqrMagnitude <= 0.0f
+            && Vector3.Dot(m_horizontalVelocity, transform.forward) < 0.0f;
 
         public event Action<float, bool> OnLocomotionChanged;
 
@@ -43,6 +52,7 @@ namespace FixedCameraPrototype.PlayerCharacter
         private void Update()
         {
             UpdateDesiredDirection();
+            UpdateTankInput();
             UpdateHorizontalVelocity(Time.deltaTime);
             UpdateVerticalVelocity(Time.deltaTime);
 
@@ -62,6 +72,32 @@ namespace FixedCameraPrototype.PlayerCharacter
             return Mathf.Lerp(k_walkBlendValue, k_runBlendValue, Mathf.InverseLerp(m_walkSpeed, m_runSpeed, currentSpeed));
         }
 
+        private float CalculateBackwardNormalizedSpeed(float currentSpeed)
+        {
+            return Mathf.Lerp(k_idleBlendValue, k_walkBlendValue, Mathf.InverseLerp(0.0f, m_backwardWalkSpeed, currentSpeed));
+        }
+
+        private void UpdateTankInput()
+        {
+            bool isLocked = m_movementLock.IsLocked;
+            TankTurnInput = isLocked ? 0.0f : m_inputReader.TankTurnInput;
+            TankThrottleInput = isLocked ? 0.0f : m_inputReader.TankThrottleInput;
+        }
+
+        private bool HasMovementInput()
+        {
+            return DesiredDirection.sqrMagnitude > 0.0f || !Mathf.Approximately(TankThrottleInput, 0.0f);
+        }
+
+        private Vector3 CalculateTargetVelocity()
+        {
+            float forwardSpeed = m_inputReader.IsSprintHeld ? m_runSpeed : m_walkSpeed;
+            float tankSpeed = TankThrottleInput >= 0.0f ? forwardSpeed : m_backwardWalkSpeed;
+            Vector3 cameraRelativeVelocity = DesiredDirection * forwardSpeed;
+            Vector3 tankVelocity = transform.forward * (TankThrottleInput * tankSpeed);
+            return Vector3.ClampMagnitude(cameraRelativeVelocity + tankVelocity, forwardSpeed);
+        }
+
         private void UpdateDesiredDirection()
         {
             if (m_movementLock.IsLocked)
@@ -79,10 +115,8 @@ namespace FixedCameraPrototype.PlayerCharacter
 
         private void UpdateHorizontalVelocity(float deltaTime)
         {
-            float targetSpeed = m_inputReader.IsSprintHeld ? m_runSpeed : m_walkSpeed;
-            Vector3 targetVelocity = DesiredDirection * targetSpeed;
-            float changeRate = DesiredDirection.sqrMagnitude > 0.0f ? m_accelerationRate : m_decelerationRate;
-            m_horizontalVelocity = Vector3.MoveTowards(m_horizontalVelocity, targetVelocity, changeRate * deltaTime);
+            float changeRate = HasMovementInput() ? m_accelerationRate : m_decelerationRate;
+            m_horizontalVelocity = Vector3.MoveTowards(m_horizontalVelocity, CalculateTargetVelocity(), changeRate * deltaTime);
         }
 
         private void UpdateVerticalVelocity(float deltaTime)
