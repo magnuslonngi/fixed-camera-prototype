@@ -15,6 +15,7 @@ namespace FixedCameraPrototype.Inventory
         [SerializeField] private InputActionReference m_cancelAction;
 
         private bool m_isNavigateHeld;
+        private int m_enabledFrame;
 
         public event Action OnNavigateUpPressed;
         public event Action OnNavigateDownPressed;
@@ -26,6 +27,7 @@ namespace FixedCameraPrototype.Inventory
             // Treat navigate as held on open so a direction already held (e.g. W while walking) needs
             // a release before it steps the selection.
             m_isNavigateHeld = true;
+            m_enabledFrame = Time.frameCount;
             m_submitAction.action.performed += HandleSubmitPerformed;
             m_cancelAction.action.performed += HandleCancelPerformed;
             m_navigateAction.action.Enable();
@@ -65,12 +67,30 @@ namespace FixedCameraPrototype.Inventory
 
         private void HandleSubmitPerformed(InputAction.CallbackContext context)
         {
+            if (IsOpeningPress())
+            {
+                return;
+            }
+
             OnSubmitPressed?.Invoke();
         }
 
         private void HandleCancelPerformed(InputAction.CallbackContext context)
         {
+            if (IsOpeningPress())
+            {
+                return;
+            }
+
             OnCancelPressed?.Invoke();
+        }
+
+        // NOTE(Engine): Tab both opens the inventory (Player map) and cancels it (UI map). Enabling the UI
+        // actions from inside the opening press's callback makes the Input System re-resolve bindings and
+        // replay that same press to Cancel (seen on the first open per session), closing it instantly.
+        private bool IsOpeningPress()
+        {
+            return Time.frameCount == m_enabledFrame;
         }
     }
 }
