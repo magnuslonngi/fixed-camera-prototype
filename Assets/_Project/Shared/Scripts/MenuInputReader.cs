@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace FixedCameraPrototype.Inventory
+namespace FixedCameraPrototype.Shared
 {
     // Reads UI-map actions, which no gameplay reader uses, so they keep working while CharacterControlLock
-    // has the gameplay actions disabled. Enabled by ItemSelectionSession only while a selection is open.
-    public class ItemSelectionInputReader : MonoBehaviour
+    // has the gameplay actions disabled. Each modal screen owns one; ModalStack enables only the focused one.
+    public class MenuInputReader : MonoBehaviour
     {
         private const float k_navigateThreshold = 0.5f;
 
@@ -35,6 +35,8 @@ namespace FixedCameraPrototype.Inventory
             m_cancelAction.action.Enable();
         }
 
+        // NOTE(Engine): The actions are shared assets. ModalStack always disables the losing reader before
+        // enabling the gaining one, so this Disable never switches off the actions of the newly focused screen.
         private void OnDisable()
         {
             m_submitAction.action.performed -= HandleSubmitPerformed;
@@ -67,7 +69,7 @@ namespace FixedCameraPrototype.Inventory
 
         private void HandleSubmitPerformed(InputAction.CallbackContext context)
         {
-            if (IsOpeningPress())
+            if (IsFocusingPress())
             {
                 return;
             }
@@ -77,7 +79,7 @@ namespace FixedCameraPrototype.Inventory
 
         private void HandleCancelPerformed(InputAction.CallbackContext context)
         {
-            if (IsOpeningPress())
+            if (IsFocusingPress())
             {
                 return;
             }
@@ -85,10 +87,10 @@ namespace FixedCameraPrototype.Inventory
             OnCancelPressed?.Invoke();
         }
 
-        // NOTE(Engine): Tab both opens the inventory (Player map) and cancels it (UI map). Enabling the UI
-        // actions from inside the opening press's callback makes the Input System re-resolve bindings and
-        // replay that same press to Cancel (seen on the first open per session), closing it instantly.
-        private bool IsOpeningPress()
+        // NOTE(Engine): Enabling actions from inside a press's callback makes the Input System re-resolve
+        // bindings and replay that same press. Tab opening the inventory would replay as Cancel, and Enter or
+        // Esc that switches screens would replay into the newly focused one, so presses in the focus frame are ignored.
+        private bool IsFocusingPress()
         {
             return Time.frameCount == m_enabledFrame;
         }

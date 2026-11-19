@@ -15,4 +15,6 @@ MonoBehaviour:
   m_displayName: Pistol Ammo
   m_useAction: 2
   m_isStackable: 1
+  m_previewPrefab: {fileID: 5769110904885127766, guid: e7c77f3bba4c44b3aa4447a45df2a475, type: 3}
   m_descriptionText: Rounds for the pistol.
+  m_readableText: 

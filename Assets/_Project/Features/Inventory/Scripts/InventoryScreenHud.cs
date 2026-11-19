@@ -4,40 +4,40 @@ using UnityEngine.UIElements;
 
 namespace FixedCameraPrototype.Inventory
 {
-    // Stateless view: every refresh rebuilds from PlayerInventory and ItemSelectionSession.
+    // Stateless view of the full-screen inventory: every refresh rebuilds from PlayerInventory and
+    // ItemSelectionSession. The 3D preview itself is driven by ItemPreviewPresenter.
     [RequireComponent(typeof(UIDocument))]
-    public class InventoryHud : MonoBehaviour
+    public class InventoryScreenHud : MonoBehaviour
     {
-        private const string k_panelName = "inventory-panel";
+        private const string k_screenName = "inventory-screen";
+        private const string k_titleLabelName = "title-label";
         private const string k_itemListName = "item-list";
         private const string k_emptyLabelName = "empty-label";
         private const string k_feedbackLabelName = "feedback-label";
+        private const string k_previewImageName = "preview-image";
         private const string k_descriptionLabelName = "description-label";
         private const string k_hintLabelName = "hint-label";
-        private const string k_visibleDescriptionClassName = "inventory-panel__description--visible";
-        private const string k_equippedSuffix = " (equipped)";
-        private const string k_quantitySuffixFormat = " x{0}";
-        private const string k_statusSuffixFormat = " {0}";
-        private const string k_targetUseHintText = "W/S select   Enter use   Esc cancel";
-        private const string k_browseHintFormat = "W/S select   Enter {0}   Esc close";
-        private const string k_equipVerb = "equip";
-        private const string k_unequipVerb = "unequip";
-        private const string k_readVerb = "read";
-        private const string k_inspectVerb = "inspect";
-        private const string k_hiddenPanelClassName = "inventory-panel--hidden";
-        private const string k_selectingPanelClassName = "inventory-panel--selecting";
+        private const string k_visibleScreenClassName = "inventory-screen--visible";
         private const string k_itemClassName = "inventory-item";
         private const string k_selectedItemClassName = "inventory-item--selected";
-        private const string k_visibleFeedbackClassName = "inventory-panel__feedback--visible";
+        private const string k_visibleFeedbackClassName = "inventory-screen__feedback--visible";
+        private const string k_browseTitleText = "Inventory";
+        private const string k_targetTitleText = "Use which item?";
+        private const string k_browseHintText = "W/S ↑/↓  select     Enter  examine     Esc/Tab  close";
+        private const string k_targetHintText = "W/S ↑/↓  select     Enter  use     Esc/Tab  cancel";
+        private const string k_equippedSuffix = "  (equipped)";
+        private const string k_quantitySuffixFormat = "  x{0}";
+        private const string k_statusSuffixFormat = "  {0}";
         private const long k_rejectionFeedbackDurationMilliseconds = 1500;
 
         [SerializeField] private PlayerInventory m_inventory;
         [SerializeField] private ItemSelectionSession m_selectionSession;
-        [SerializeField] private ItemActionPerformer m_actionPerformer;
         [SerializeField] private EquipmentSlot m_equipmentSlot;
+        [SerializeField] private ItemPreviewStage m_previewStage;
         [SerializeField] private string m_rejectionFeedbackText = "It doesn't work here.";
 
-        private VisualElement m_panel;
+        private VisualElement m_screen;
+        private Label m_titleLabel;
         private VisualElement m_itemList;
         private Label m_emptyLabel;
         private Label m_feedbackLabel;
@@ -51,12 +51,14 @@ namespace FixedCameraPrototype.Inventory
         private void OnEnable()
         {
             VisualElement rootElement = GetComponent<UIDocument>().rootVisualElement;
-            m_panel = rootElement.Q(k_panelName);
+            m_screen = rootElement.Q(k_screenName);
+            m_titleLabel = rootElement.Q<Label>(k_titleLabelName);
             m_itemList = rootElement.Q(k_itemListName);
             m_emptyLabel = rootElement.Q<Label>(k_emptyLabelName);
             m_feedbackLabel = rootElement.Q<Label>(k_feedbackLabelName);
             m_descriptionLabel = rootElement.Q<Label>(k_descriptionLabelName);
             m_hintLabel = rootElement.Q<Label>(k_hintLabelName);
+            rootElement.Q(k_previewImageName).style.backgroundImage = Background.FromRenderTexture(m_previewStage.PreviewTexture);
             m_hideFeedbackScheduledItem = m_feedbackLabel.schedule.Execute(HideRejectionFeedback);
             m_hideFeedbackScheduledItem.Pause();
 
@@ -65,7 +67,6 @@ namespace FixedCameraPrototype.Inventory
             m_selectionSession.OnSelectionEnded += HandleSelectionEnded;
             m_selectionSession.OnSelectedIndexChanged += HandleSelectedIndexChanged;
             m_selectionSession.OnItemRejected += ShowRejectionFeedback;
-            m_actionPerformer.OnDescriptionRequested += ShowDescription;
             m_equipmentSlot.OnEquippedItemChanged += HandleEquippedItemChanged;
 
             if (m_inventory.TryGetComponent(out m_itemStatusSource))
@@ -83,7 +84,6 @@ namespace FixedCameraPrototype.Inventory
             m_selectionSession.OnSelectionEnded -= HandleSelectionEnded;
             m_selectionSession.OnSelectedIndexChanged -= HandleSelectedIndexChanged;
             m_selectionSession.OnItemRejected -= ShowRejectionFeedback;
-            m_actionPerformer.OnDescriptionRequested -= ShowDescription;
             m_equipmentSlot.OnEquippedItemChanged -= HandleEquippedItemChanged;
             m_hideFeedbackScheduledItem.Pause();
 
@@ -95,24 +95,36 @@ namespace FixedCameraPrototype.Inventory
 
         private void Refresh()
         {
-            bool isSelecting = m_selectionSession.IsActive;
-            bool hasItems = m_inventory.ItemCount > 0;
+            bool isActive = m_selectionSession.IsActive;
+            m_screen.EnableInClassList(k_visibleScreenClassName, isActive);
+            if (!isActive)
+            {
+                return;
+            }
 
-            m_panel.EnableInClassList(k_hiddenPanelClassName, !isSelecting && !hasItems);
-            m_panel.EnableInClassList(k_selectingPanelClassName, isSelecting);
-            m_emptyLabel.style.display = hasItems ? DisplayStyle.None : DisplayStyle.Flex;
-            RebuildItemList(isSelecting);
-            m_hintLabel.text = ResolveHintText();
+            bool isBrowsing = m_selectionSession.IsBrowsing;
+            m_titleLabel.text = isBrowsing ? k_browseTitleText : k_targetTitleText;
+            m_hintLabel.text = isBrowsing ? k_browseHintText : k_targetHintText;
+            m_emptyLabel.style.display = m_inventory.ItemCount > 0 ? DisplayStyle.None : DisplayStyle.Flex;
+            m_descriptionLabel.text = ResolveDescriptionText(isBrowsing);
+            RebuildItemList();
         }
 
-        private void RebuildItemList(bool isSelecting)
+        // Target mode previews the target, so an item description would describe the wrong thing.
+        private string ResolveDescriptionText(bool isBrowsing)
+        {
+            ItemDefinition selectedItem = m_selectionSession.SelectedItem;
+            return isBrowsing && selectedItem != null ? selectedItem.DescriptionText : string.Empty;
+        }
+
+        private void RebuildItemList()
         {
             m_itemList.Clear();
             for (int i = 0; i < m_inventory.ItemCount; i++)
             {
                 Label itemLabel = new Label(BuildItemLabelText(m_inventory.GetItemAt(i)));
                 itemLabel.AddToClassList(k_itemClassName);
-                itemLabel.EnableInClassList(k_selectedItemClassName, isSelecting && i == m_selectionSession.SelectedIndex);
+                itemLabel.EnableInClassList(k_selectedItemClassName, i == m_selectionSession.SelectedIndex);
                 m_itemList.Add(itemLabel);
             }
         }
@@ -131,30 +143,6 @@ namespace FixedCameraPrototype.Inventory
             return m_itemStatusSource != null && m_itemStatusSource.TryGetStatusText(item, out statusText);
         }
 
-        private string ResolveHintText()
-        {
-            if (!m_selectionSession.IsBrowsing)
-            {
-                return k_targetUseHintText;
-            }
-
-            ItemDefinition selectedItem = m_selectionSession.SelectedItem;
-            return selectedItem == null ? k_targetUseHintText : string.Format(k_browseHintFormat, ResolveActionVerb(selectedItem));
-        }
-
-        private string ResolveActionVerb(ItemDefinition item)
-        {
-            switch (item.UseAction)
-            {
-                case ItemUseAction.Equip:
-                    return m_equipmentSlot.IsEquipped(item) ? k_unequipVerb : k_equipVerb;
-                case ItemUseAction.Read:
-                    return k_readVerb;
-                default:
-                    return k_inspectVerb;
-            }
-        }
-
         private void HandleEquippedItemChanged(ItemDefinition equippedItem)
         {
             Refresh();
@@ -162,14 +150,12 @@ namespace FixedCameraPrototype.Inventory
 
         private void HandleSelectedIndexChanged(int selectedIndex)
         {
-            HideDescription();
             Refresh();
         }
 
         private void HandleSelectionEnded()
         {
             HideRejectionFeedback();
-            HideDescription();
             Refresh();
         }
 
@@ -178,17 +164,6 @@ namespace FixedCameraPrototype.Inventory
             m_feedbackLabel.text = m_rejectionFeedbackText;
             m_feedbackLabel.AddToClassList(k_visibleFeedbackClassName);
             m_hideFeedbackScheduledItem.ExecuteLater(k_rejectionFeedbackDurationMilliseconds);
-        }
-
-        private void ShowDescription(ItemDefinition item)
-        {
-            m_descriptionLabel.text = item.DescriptionText;
-            m_descriptionLabel.AddToClassList(k_visibleDescriptionClassName);
-        }
-
-        private void HideDescription()
-        {
-            m_descriptionLabel.RemoveFromClassList(k_visibleDescriptionClassName);
         }
 
         private void HideRejectionFeedback()

@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.ItemDefinition
   m_displayName: Pistol
   m_useAction: 0
+  m_isStackable: 0
+  m_previewPrefab: {fileID: 4043241439066821443, guid: 726cd21416e138640a4f2575ffe04009, type: 3}
   m_descriptionText: A compact pistol.
+  m_readableText: 

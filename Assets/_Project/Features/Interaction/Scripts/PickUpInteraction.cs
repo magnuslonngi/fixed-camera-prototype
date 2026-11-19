@@ -5,7 +5,8 @@ using UnityEngine;
 namespace FixedCameraPrototype.Interaction
 {
     // Hands the item to the instigator's IItemReceiver. The object only leaves the world once the
-    // item is actually stored, so an instigator without an inventory cannot make it vanish.
+    // item is actually stored, so an instigator without an inventory cannot make it vanish. The
+    // instigator's IItemExaminePrompt, if any, then shows what was picked up.
     [RequireComponent(typeof(Interactable))]
     public class PickUpInteraction : MonoBehaviour
     {
@@ -40,6 +41,11 @@ namespace FixedCameraPrototype.Interaction
 
             OnPickedUp?.Invoke(instigator);
             gameObject.SetActive(false);
+
+            if (instigator.TryGetComponent(out IItemExaminePrompt itemExaminePrompt))
+            {
+                itemExaminePrompt.ExamineItem(m_item);
+            }
         }
     }
 }

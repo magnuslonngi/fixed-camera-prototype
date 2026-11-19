@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.ItemLockInteraction
   m_requiredItem: {fileID: 11400000, guid: cdada257190744b9684d1db0e765174f, type: 2}
+  m_previewPrefab: {fileID: 8201271419798359909, guid: 9de16d24a04434e3598101193feb096b, type: 3}
 --- !u!114 &8827609567321090533
 MonoBehaviour:
   m_ObjectHideFlags: 0

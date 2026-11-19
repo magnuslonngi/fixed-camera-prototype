@@ -4,25 +4,25 @@ using UnityEngine;
 
 namespace FixedCameraPrototype.Inventory
 {
-    // Sole authority for the modal "use an item on something" state. While open it holds the
-    // character control lock, so gameplay input is off and only the selection input is live.
-    public class ItemSelectionSession : MonoBehaviour, IItemSelectionPrompt
+    // Sole authority for the inventory screen. Browsing (opened with the inventory key) hands the chosen
+    // item to the item window; target mode (opened by an IItemUseTarget) uses the chosen item on that target.
+    public class ItemSelectionSession : MonoBehaviour, IItemSelectionPrompt, IModalScreen
     {
         private const int k_noSelectionIndex = -1;
 
         [SerializeField] private PlayerInventory m_inventory;
-        [SerializeField] private ItemSelectionInputReader m_inputReader;
-        [SerializeField] private CharacterControlLock m_controlLock;
+        [SerializeField] private MenuInputReader m_inputReader;
+        [SerializeField] private ModalStack m_modalStack;
         [SerializeField] private InventoryInputReader m_inventoryInputReader;
-        [SerializeField] private ItemActionPerformer m_actionPerformer;
+        [SerializeField] private ItemExamineSession m_examineSession;
         [SerializeField] private EquipmentSlot m_equipmentSlot;
 
         private IItemUseTarget m_activeTarget;
         private int m_selectedIndex = k_noSelectionIndex;
-        private bool m_isOpen;
 
-        public bool IsActive => m_isOpen;
-        public bool IsBrowsing => m_isOpen && m_activeTarget == null;
+        public bool IsActive => m_modalStack.IsOpen(this);
+        public bool IsBrowsing => IsActive && m_activeTarget == null;
+        public IItemUseTarget ActiveTarget => m_activeTarget;
         public int SelectedIndex => m_selectedIndex;
         public ItemDefinition SelectedItem => HasValidSelection() ? m_inventory.GetItemAt(m_selectedIndex) : null;
 
@@ -70,21 +70,6 @@ namespace FixedCameraPrototype.Inventory
             Open(null);
         }
 
-        private void Open(IItemUseTarget target)
-        {
-            if (IsActive)
-            {
-                return;
-            }
-
-            m_isOpen = true;
-            m_activeTarget = target;
-            m_controlLock.AddLock();
-            m_inputReader.enabled = true;
-            OnSelectionStarted?.Invoke();
-            SetSelectedIndex(m_inventory.ItemCount > 0 ? 0 : k_noSelectionIndex);
-        }
-
         public void EndSelection()
         {
             if (!IsActive)
@@ -92,12 +77,28 @@ namespace FixedCameraPrototype.Inventory
                 return;
             }
 
-            m_isOpen = false;
+            m_modalStack.Pop(this);
             m_activeTarget = null;
-            m_inputReader.enabled = false;
-            m_controlLock.RemoveLock();
             SetSelectedIndex(k_noSelectionIndex);
             OnSelectionEnded?.Invoke();
+        }
+
+        public void SetInputFocus(bool hasFocus)
+        {
+            m_inputReader.enabled = hasFocus;
+        }
+
+        private void Open(IItemUseTarget target)
+        {
+            if (IsActive)
+            {
+                return;
+            }
+
+            m_activeTarget = target;
+            m_modalStack.Push(this);
+            OnSelectionStarted?.Invoke();
+            SetSelectedIndex(m_inventory.ItemCount > 0 ? 0 : k_noSelectionIndex);
         }
 
         private void SelectNext()
@@ -132,7 +133,7 @@ namespace FixedCameraPrototype.Inventory
 
             if (IsBrowsing)
             {
-                m_actionPerformer.Perform(selectedItem);
+                m_examineSession.ExamineItem(selectedItem);
                 return;
             }
 

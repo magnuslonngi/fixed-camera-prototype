@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.ItemDefinition
   m_displayName: Rusty Key
   m_useAction: 2
+  m_isStackable: 0
+  m_previewPrefab: {fileID: 205170016873474767, guid: 5f2be4105d67b43b58eb50b49af1892c, type: 3}
   m_descriptionText: Just a rusty key. It must open a door around here.
+  m_readableText: 

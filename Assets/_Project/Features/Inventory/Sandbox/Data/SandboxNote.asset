@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.ItemDefinition
   m_displayName: Torn Note
   m_useAction: 1
-  m_descriptionText: '"The storage room key is with the rest of my things. Don''t
-    let anyone in."'
+  m_isStackable: 0
+  m_previewPrefab: {fileID: 2849368960909645007, guid: 2d1b7b71fbc8940b09a03e712600cc12, type: 3}
+  m_descriptionText: A torn page. The handwriting is hurried.
+  m_readableText: '"The storage room key is with the rest of my things. Don''t let
+    anyone in."'

@@ -1,19 +1,17 @@
-using System;
+using FixedCameraPrototype.Shared;
 using UnityEngine;
 
 namespace FixedCameraPrototype.Interaction
 {
-    // Placeholder: a document reader UI will subscribe to OnReadRequested later.
+    // Reading happens in place: the document is handed to the instigator's IDocumentReader.
     [RequireComponent(typeof(Interactable))]
     public class ReadInteraction : MonoBehaviour
     {
         [SerializeField]
-        [TextArea]
+        [TextArea(4, 12)]
         private string m_documentText;
 
         private Interactable m_interactable;
-
-        public event Action<string> OnReadRequested;
 
         private void Awake()
         {
@@ -32,8 +30,10 @@ namespace FixedCameraPrototype.Interaction
 
         private void HandleInteracted(GameObject instigator)
         {
-            OnReadRequested?.Invoke(m_documentText);
-            Debug.Log($"[Placeholder] Read {name}: {m_documentText}", this);
+            if (instigator.TryGetComponent(out IDocumentReader documentReader))
+            {
+                documentReader.OpenDocument(m_documentText);
+            }
         }
     }
 }

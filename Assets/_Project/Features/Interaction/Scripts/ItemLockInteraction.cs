@@ -9,11 +9,14 @@ namespace FixedCameraPrototype.Interaction
     public class ItemLockInteraction : MonoBehaviour, IItemUseTarget
     {
         [SerializeField] private ItemDefinition m_requiredItem;
+        [Tooltip("Model shown in the inventory while choosing an item to use here.")]
+        [SerializeField] private GameObject m_previewPrefab;
 
         private Interactable m_interactable;
         private bool m_isUnlocked;
 
         public bool IsUnlocked => m_isUnlocked;
+        public GameObject PreviewPrefab => m_previewPrefab;
 
         public event Action OnUnlocked;
         public event Action<ItemDefinition> OnUnlockRejected;

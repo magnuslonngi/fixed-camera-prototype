@@ -1,7 +1,9 @@
 {
     "name": "FixedCameraPrototype.Shared",
     "rootNamespace": "FixedCameraPrototype.Shared",
-    "references": [],
+    "references": [
+        "Unity.InputSystem"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
