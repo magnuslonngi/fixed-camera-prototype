@@ -3,7 +3,27 @@ guid: ac20ac7ae44be4f6f84283e1134c5ab0
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GirlRobo
+    second: {fileID: 2100000, guid: c1da361dc151ff241956e170a4403ccf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GirlRobo cornea
+    second: {fileID: 2100000, guid: c32ea9da165c9084390a3e2e01abfbd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hairs
+    second: {fileID: 2100000, guid: 20e44b1376e94194994a628be76e6832, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: zra4
+    second: {fileID: 2100000, guid: 1f390fc6e21521b4dacae446dcca762c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2390726680098102617}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3499999, z: 0.5}
+  m_LocalRotation: {x: 0, y: -0.21473531, z: 0, w: 0.9766723}
+  m_LocalPosition: {x: -0.245, y: 1.461, z: 0.484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_inputReader: {fileID: 5850814226784025466}
   m_movementLock: {fileID: 1899134130339142574}
   m_aimAssist: {fileID: 8510054257538491193}
+  m_aimOrigin: {fileID: 586832466829558751}
   m_turnSpeedDegreesPerSecond: 120
   m_snapTurnSpeedDegreesPerSecond: 720
   m_upPitchDegrees: 30

@@ -1,9 +1,10 @@
+using System;
 using FixedCameraPrototype.Shared;
 using UnityEngine;
 
 namespace FixedCameraPrototype.Combat
 {
-    public class PlayerAim : MonoBehaviour
+    public class PlayerAim : MonoBehaviour, IAimStateSource
     {
         private const float k_inputThreshold = 0.5f;
 
@@ -11,6 +12,7 @@ namespace FixedCameraPrototype.Combat
         [SerializeField] private CombatInputReader m_inputReader;
         [SerializeField] private MovementLock m_movementLock;
         [SerializeField] private AimAssist m_aimAssist;
+        [SerializeField] private Transform m_aimOrigin;
 
         [Header("Aiming (degrees)")]
         [SerializeField] private float m_turnSpeedDegreesPerSecond = 120.0f;
@@ -24,7 +26,9 @@ namespace FixedCameraPrototype.Combat
 
         public bool IsAiming => m_isAiming;
         public AimTier CurrentTier => ResolveTier(m_inputReader.AimAdjustInput.y);
-        public Vector3 AimDirection => Quaternion.AngleAxis(-ResolvePitchDegrees(), transform.right) * transform.forward;
+        public Vector3 AimDirection => Quaternion.AngleAxis(-ResolvePitchDegrees(), m_aimOrigin.right) * m_aimOrigin.forward;
+
+        public event Action<bool> OnAimingChanged;
 
         private void Update()
         {
@@ -53,6 +57,7 @@ namespace FixedCameraPrototype.Combat
 
             m_isAiming = isAimRequested;
             m_isSnapping = false;
+            OnAimingChanged?.Invoke(m_isAiming);
 
             if (!m_isAiming)
             {
@@ -64,21 +69,48 @@ namespace FixedCameraPrototype.Combat
             BeginSnapToNearestTarget();
         }
 
+        public bool TryFindSnapTarget(out IAimAssistTarget target)
+        {
+            return m_aimAssist.TryFindAcquisitionTarget(transform.position, transform.forward, out target);
+        }
+
+        // NOTE(Design): The aim origin sits off the body's center and points away from body forward
+        // in the pistol pose, so facing the target with the body would leave the hands aiming beside it.
+        // Solves the body yaw that places the target on the aim origin's line of fire.
+        public bool TryCalculateSnapRotation(Vector3 targetPosition, out Quaternion snapRotation)
+        {
+            snapRotation = transform.rotation;
+
+            Vector3 flatToTarget = Vector3.ProjectOnPlane(targetPosition - transform.position, Vector3.up);
+            Vector3 localOrigin = Vector3.ProjectOnPlane(transform.InverseTransformPoint(m_aimOrigin.position), Vector3.up);
+            Vector3 localDirection = Vector3.ProjectOnPlane(transform.InverseTransformDirection(m_aimOrigin.forward), Vector3.up).normalized;
+            Vector3 localPerpendicular = Vector3.Cross(Vector3.up, localDirection);
+
+            float lateralOffset = Vector3.Dot(localOrigin, localPerpendicular);
+            float targetDistance = flatToTarget.magnitude;
+            if (targetDistance <= Mathf.Abs(lateralOffset))
+            {
+                return false;
+            }
+
+            float distanceAlongLine = Mathf.Sqrt((targetDistance * targetDistance) - (lateralOffset * lateralOffset));
+            bool isTargetBehindOrigin = distanceAlongLine <= Vector3.Dot(localOrigin, localDirection);
+            if (isTargetBehindOrigin)
+            {
+                return false;
+            }
+
+            Vector3 localTargetPoint = (localPerpendicular * lateralOffset) + (localDirection * distanceAlongLine);
+            snapRotation = Quaternion.LookRotation(flatToTarget, Vector3.up) * Quaternion.Inverse(Quaternion.LookRotation(localTargetPoint, Vector3.up));
+            return true;
+        }
+
         private void BeginSnapToNearestTarget()
         {
-            if (!m_aimAssist.TryFindAcquisitionTarget(transform.position, transform.forward, out IAimAssistTarget target))
+            if (TryFindSnapTarget(out IAimAssistTarget target))
             {
-                return;
+                m_isSnapping = TryCalculateSnapRotation(target.Position, out m_snapRotation);
             }
-
-            Vector3 flatDirection = Vector3.ProjectOnPlane(target.Position - transform.position, Vector3.up);
-            if (flatDirection.sqrMagnitude < Mathf.Epsilon)
-            {
-                return;
-            }
-
-            m_snapRotation = Quaternion.LookRotation(flatDirection, Vector3.up);
-            m_isSnapping = true;
         }
 
         private void UpdateFacing(float deltaTime)
