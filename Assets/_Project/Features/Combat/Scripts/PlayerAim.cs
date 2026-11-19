@@ -11,6 +11,7 @@ namespace FixedCameraPrototype.Combat
         [Header("References")]
         [SerializeField] private CombatInputReader m_inputReader;
         [SerializeField] private PlayerWeapon m_weapon;
+        [SerializeField] private PlayerReload m_reload;
         [SerializeField] private MovementLock m_movementLock;
         [SerializeField] private AimAssist m_aimAssist;
         [SerializeField] private Transform m_aimOrigin;
@@ -137,7 +138,7 @@ namespace FixedCameraPrototype.Combat
 
         private bool CanAim()
         {
-            return m_inputReader.IsAimHeld && m_weapon.IsEquipped;
+            return m_inputReader.IsAimHeld && m_weapon.IsEquipped && !m_reload.IsReloading;
         }
 
         private float ResolvePitchDegrees()

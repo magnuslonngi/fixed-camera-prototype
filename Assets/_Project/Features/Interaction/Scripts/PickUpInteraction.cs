@@ -10,6 +10,7 @@ namespace FixedCameraPrototype.Interaction
     public class PickUpInteraction : MonoBehaviour
     {
         [SerializeField] private ItemDefinition m_item;
+        [SerializeField] private int m_quantity = 1;
 
         private Interactable m_interactable;
 
@@ -32,7 +33,7 @@ namespace FixedCameraPrototype.Interaction
 
         private void HandleInteracted(GameObject instigator)
         {
-            if (!instigator.TryGetComponent(out IItemReceiver itemReceiver) || !itemReceiver.TryAddItem(m_item))
+            if (!instigator.TryGetComponent(out IItemReceiver itemReceiver) || !itemReceiver.TryAddItem(m_item, m_quantity))
             {
                 return;
             }

@@ -16,6 +16,8 @@ namespace FixedCameraPrototype.Inventory
         private const string k_hintLabelName = "hint-label";
         private const string k_visibleDescriptionClassName = "inventory-panel__description--visible";
         private const string k_equippedSuffix = " (equipped)";
+        private const string k_quantitySuffixFormat = " x{0}";
+        private const string k_statusSuffixFormat = " {0}";
         private const string k_targetUseHintText = "W/S select   Enter use   Esc cancel";
         private const string k_browseHintFormat = "W/S select   Enter {0}   Esc close";
         private const string k_equipVerb = "equip";
@@ -43,6 +45,9 @@ namespace FixedCameraPrototype.Inventory
         private Label m_hintLabel;
         private IVisualElementScheduledItem m_hideFeedbackScheduledItem;
 
+        // Optional: only present when another feature (e.g. Combat) owns live item state on the character.
+        private IItemStatusSource m_itemStatusSource;
+
         private void OnEnable()
         {
             VisualElement rootElement = GetComponent<UIDocument>().rootVisualElement;
@@ -62,6 +67,12 @@ namespace FixedCameraPrototype.Inventory
             m_selectionSession.OnItemRejected += ShowRejectionFeedback;
             m_actionPerformer.OnDescriptionRequested += ShowDescription;
             m_equipmentSlot.OnEquippedItemChanged += HandleEquippedItemChanged;
+
+            if (m_inventory.TryGetComponent(out m_itemStatusSource))
+            {
+                m_itemStatusSource.OnStatusChanged += Refresh;
+            }
+
             Refresh();
         }
 
@@ -75,12 +86,17 @@ namespace FixedCameraPrototype.Inventory
             m_actionPerformer.OnDescriptionRequested -= ShowDescription;
             m_equipmentSlot.OnEquippedItemChanged -= HandleEquippedItemChanged;
             m_hideFeedbackScheduledItem.Pause();
+
+            if (m_itemStatusSource != null)
+            {
+                m_itemStatusSource.OnStatusChanged -= Refresh;
+            }
         }
 
         private void Refresh()
         {
             bool isSelecting = m_selectionSession.IsActive;
-            bool hasItems = m_inventory.Items.Count > 0;
+            bool hasItems = m_inventory.ItemCount > 0;
 
             m_panel.EnableInClassList(k_hiddenPanelClassName, !isSelecting && !hasItems);
             m_panel.EnableInClassList(k_selectingPanelClassName, isSelecting);
@@ -92,15 +108,27 @@ namespace FixedCameraPrototype.Inventory
         private void RebuildItemList(bool isSelecting)
         {
             m_itemList.Clear();
-            for (int i = 0; i < m_inventory.Items.Count; i++)
+            for (int i = 0; i < m_inventory.ItemCount; i++)
             {
-                ItemDefinition item = m_inventory.Items[i];
-                string suffix = m_equipmentSlot.IsEquipped(item) ? k_equippedSuffix : string.Empty;
-                Label itemLabel = new Label(item.DisplayName + suffix);
+                Label itemLabel = new Label(BuildItemLabelText(m_inventory.GetItemAt(i)));
                 itemLabel.AddToClassList(k_itemClassName);
                 itemLabel.EnableInClassList(k_selectedItemClassName, isSelecting && i == m_selectionSession.SelectedIndex);
                 m_itemList.Add(itemLabel);
             }
+        }
+
+        private string BuildItemLabelText(ItemDefinition item)
+        {
+            string quantitySuffix = item.IsStackable ? string.Format(k_quantitySuffixFormat, m_inventory.GetQuantity(item)) : string.Empty;
+            string statusSuffix = TryGetItemStatusText(item, out string statusText) ? string.Format(k_statusSuffixFormat, statusText) : string.Empty;
+            string equippedSuffix = m_equipmentSlot.IsEquipped(item) ? k_equippedSuffix : string.Empty;
+            return item.DisplayName + quantitySuffix + statusSuffix + equippedSuffix;
+        }
+
+        private bool TryGetItemStatusText(ItemDefinition item, out string statusText)
+        {
+            statusText = null;
+            return m_itemStatusSource != null && m_itemStatusSource.TryGetStatusText(item, out statusText);
         }
 
         private string ResolveHintText()

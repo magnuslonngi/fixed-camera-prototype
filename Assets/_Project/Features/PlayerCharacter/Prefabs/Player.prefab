@@ -34,6 +34,8 @@ GameObject:
   - component: {fileID: 8575984104878774790}
   - component: {fileID: 3737307921566373050}
   - component: {fileID: 4486835765307518655}
+  - component: {fileID: 6331164857184156712}
+  - component: {fileID: 820561254500529547}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -193,6 +195,7 @@ MonoBehaviour:
   m_aimAction: {fileID: -4226782285583997548, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_fireAction: {fileID: -8141908710578739964, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_aimAdjustAction: {fileID: -1364400786475027407, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_reloadAction: {fileID: -7394202404194984215, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_controlLock: {fileID: 2579354574389170811}
 --- !u!114 &8297573463254367355
 MonoBehaviour:
@@ -231,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.Combat::FixedCameraPrototype.Combat.PlayerAim
   m_inputReader: {fileID: 8789931306653791118}
   m_weapon: {fileID: 6889546131209826840}
+  m_reload: {fileID: 820561254500529547}
   m_movementLock: {fileID: 3438504799321581782}
   m_aimAssist: {fileID: 8297573463254367355}
   m_aimOrigin: {fileID: 7065163129296247400}
@@ -256,6 +260,7 @@ MonoBehaviour:
   m_muzzle: {fileID: 7065163129296247400}
   m_equipmentSlot: {fileID: 690205619261114166}
   m_weaponItem: {fileID: 11400000, guid: 4b43a1deaa7054462b034f5b73d3afd6, type: 2}
+  m_magazine: {fileID: 6331164857184156712}
   m_damage: 10
   m_rangeMeters: 20
   m_secondsBetweenShots: 0.4
@@ -459,6 +464,39 @@ MonoBehaviour:
   m_weapon: {fileID: 6889546131209826840}
   m_equipmentSlot: {fileID: 690205619261114166}
   m_weaponVisual: {fileID: 6007752685671848194}
+--- !u!114 &6331164857184156712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bdb7bbb2af1490f98cce78d410c7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Combat::FixedCameraPrototype.Combat.WeaponMagazine
+  m_weaponItem: {fileID: 11400000, guid: 4b43a1deaa7054462b034f5b73d3afd6, type: 2}
+  m_ammoItem: {fileID: 11400000, guid: c8b428f0f0f324b119aa24178fdbba90, type: 2}
+  m_capacity: 10
+--- !u!114 &820561254500529547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570297085233051870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d04ff389ad3749c2a2bb4969b3ebadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Combat::FixedCameraPrototype.Combat.PlayerReload
+  m_inputReader: {fileID: 8789931306653791118}
+  m_weapon: {fileID: 6889546131209826840}
+  m_magazine: {fileID: 6331164857184156712}
+  m_equipmentSlot: {fileID: 690205619261114166}
+  m_movementLock: {fileID: 3438504799321581782}
+  m_reloadSeconds: 1.5
 --- !u!1 &6584575475412108315
 GameObject:
   m_ObjectHideFlags: 0

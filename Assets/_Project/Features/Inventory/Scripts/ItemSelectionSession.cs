@@ -24,7 +24,7 @@ namespace FixedCameraPrototype.Inventory
         public bool IsActive => m_isOpen;
         public bool IsBrowsing => m_isOpen && m_activeTarget == null;
         public int SelectedIndex => m_selectedIndex;
-        public ItemDefinition SelectedItem => HasValidSelection() ? m_inventory.Items[m_selectedIndex] : null;
+        public ItemDefinition SelectedItem => HasValidSelection() ? m_inventory.GetItemAt(m_selectedIndex) : null;
 
         public event Action OnSelectionStarted;
         public event Action OnSelectionEnded;
@@ -82,7 +82,7 @@ namespace FixedCameraPrototype.Inventory
             m_controlLock.AddLock();
             m_inputReader.enabled = true;
             OnSelectionStarted?.Invoke();
-            SetSelectedIndex(m_inventory.Items.Count > 0 ? 0 : k_noSelectionIndex);
+            SetSelectedIndex(m_inventory.ItemCount > 0 ? 0 : k_noSelectionIndex);
         }
 
         public void EndSelection()
@@ -112,7 +112,7 @@ namespace FixedCameraPrototype.Inventory
 
         private void StepSelection(int indexOffset)
         {
-            int itemCount = m_inventory.Items.Count;
+            int itemCount = m_inventory.ItemCount;
             if (itemCount == 0)
             {
                 return;
@@ -164,7 +164,7 @@ namespace FixedCameraPrototype.Inventory
 
         private bool HasValidSelection()
         {
-            return m_selectedIndex >= 0 && m_selectedIndex < m_inventory.Items.Count;
+            return m_selectedIndex >= 0 && m_selectedIndex < m_inventory.ItemCount;
         }
     }
 }

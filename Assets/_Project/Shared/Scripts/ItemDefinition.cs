@@ -8,6 +8,7 @@ namespace FixedCameraPrototype.Shared
     {
         [SerializeField] private string m_displayName;
         [SerializeField] private ItemUseAction m_useAction = ItemUseAction.Inspect;
+        [SerializeField] private bool m_isStackable;
 
         [SerializeField]
         [TextArea]
@@ -15,6 +16,7 @@ namespace FixedCameraPrototype.Shared
 
         public string DisplayName => m_displayName;
         public ItemUseAction UseAction => m_useAction;
+        public bool IsStackable => m_isStackable;
         public string DescriptionText => m_descriptionText;
     }
 }
