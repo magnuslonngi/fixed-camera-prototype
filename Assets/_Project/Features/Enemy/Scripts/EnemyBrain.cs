@@ -15,12 +15,17 @@ namespace FixedCameraPrototype.Enemy
         [SerializeField] private float m_attackDurationSeconds = 1.4f;
         [Tooltip("How long a hit staggers the enemy; matches the hurt animation length.")]
         [SerializeField] private float m_staggerSeconds = 0.6f;
+        [Tooltip("Minimum time between staggers, so continuous fire cannot stunlock the enemy.")]
+        [SerializeField] private float m_staggerCooldownSeconds = 1.5f;
 
         private IEnemyIdleBehavior m_idleBehavior;
         private EnemyState m_currentState;
         private float m_remainingStateSeconds;
+        private float m_nextStaggerAllowedTime = float.NegativeInfinity;
 
         public EnemyState CurrentState => m_currentState;
+
+        private bool CanBeStaggered => Time.time >= m_nextStaggerAllowedTime;
 
         public event Action<EnemyState> OnStateChanged;
 
@@ -114,9 +119,15 @@ namespace FixedCameraPrototype.Enemy
                 return;
             }
 
+            m_perception.AlertToNearestTarget();
+            if (!CanBeStaggered)
+            {
+                return;
+            }
+
             m_attack.CancelAttack();
             m_locomotion.Stop();
-            m_perception.AlertToNearestTarget();
+            m_nextStaggerAllowedTime = Time.time + m_staggerCooldownSeconds;
             EnterState(EnemyState.Hurt);
         }
 
