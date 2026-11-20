@@ -3423,7 +3423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 743099365153880908, guid: 56723fa5cf4494fddbddfb7912387738, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: -0.444219
       objectReference: {fileID: 0}
     - target: {fileID: 743099365153880908, guid: 56723fa5cf4494fddbddfb7912387738, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3431,7 +3431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 743099365153880908, guid: 56723fa5cf4494fddbddfb7912387738, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0.89591825
       objectReference: {fileID: 0}
     - target: {fileID: 743099365153880908, guid: 56723fa5cf4494fddbddfb7912387738, type: 3}
       propertyPath: m_LocalRotation.z
@@ -3443,7 +3443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 743099365153880908, guid: 56723fa5cf4494fddbddfb7912387738, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 232.74701
       objectReference: {fileID: 0}
     - target: {fileID: 743099365153880908, guid: 56723fa5cf4494fddbddfb7912387738, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -44126,6 +44126,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 360767823026393048, guid: bafe6908aac8e4f6f8c5fa4a5c47c1ab, type: 3}
+      propertyPath: m_pickedUpEventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 61b41142b462c42899a841667cb7e5c6, type: 2}
     - target: {fileID: 2751602948772304680, guid: bafe6908aac8e4f6f8c5fa4a5c47c1ab, type: 3}
       propertyPath: m_Name
       value: RefugeKeyPickUp
