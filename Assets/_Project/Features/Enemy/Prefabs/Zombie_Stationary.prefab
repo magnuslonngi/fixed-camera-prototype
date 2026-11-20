@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2790771247732547283
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1144344371010908568, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_Name
+      value: Zombie_Stationary
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1144344371010908568, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3923069613599134704}
+  m_SourcePrefab: {fileID: 100100000, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+--- !u!1 &2980055351290392395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1144344371010908568, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+  m_PrefabInstance: {fileID: 2790771247732547283}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3923069613599134704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2980055351290392395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c33d033fb8d44fcb9ef59e2e513bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Enemy::FixedCameraPrototype.Enemy.StationaryIdleBehavior
+  m_locomotion: {fileID: 6205480963952374049}
+--- !u!114 &6205480963952374049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8116757181219254258, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+  m_PrefabInstance: {fileID: 2790771247732547283}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2980055351290392395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681ce3fca65f940a4b7cbf029a7d29ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Enemy::FixedCameraPrototype.Enemy.EnemyLocomotion

@@ -1,0 +1,17 @@
+.health-hud {
+    position: absolute;
+    left: 32px;
+    top: 32px;
+    width: 240px;
+    height: 16px;
+    padding: 2px;
+    background-color: rgba(10, 10, 10, 0.7);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.health-hud__fill {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(170, 30, 30);
+}

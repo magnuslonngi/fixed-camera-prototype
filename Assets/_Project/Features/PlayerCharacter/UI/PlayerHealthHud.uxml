@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="PlayerHealthHud.uss" />
+    <ui:VisualElement name="health-hud" class="health-hud" picking-mode="Ignore">
+        <ui:VisualElement name="health-fill" class="health-hud__fill" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>
