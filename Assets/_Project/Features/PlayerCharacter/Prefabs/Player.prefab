@@ -851,6 +851,7 @@ GameObject:
   - component: {fileID: 7921959443663898677}
   - component: {fileID: 8132023575696304646}
   - component: {fileID: 2931313549395249816}
+  - component: {fileID: 3119105510471928170}
   m_Layer: 0
   m_Name: Vitality
   m_TagString: Untagged
@@ -899,6 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerPursuitTarget
   m_health: {fileID: 2651632095950109556}
+  m_damageGate: {fileID: 3119105510471928170}
   m_bodyRoot: {fileID: 5548434985695489100}
   m_lineOfSightAnchor: {fileID: 8019506465921989805}
 --- !u!114 &7921959443663898677
@@ -948,6 +950,20 @@ MonoBehaviour:
   m_regenerationPerSecond: 8
   m_regenerationDelaySeconds: 1.5
   m_exhaustionRecoveryRatio: 0.4
+--- !u!114 &3119105510471928170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957063952369840595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a55572b3df144c5ac86fa7096b04ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerHitInvulnerability
+  m_health: {fileID: 2651632095950109556}
+  m_invulnerabilitySecondsAfterHit: 1.5
 --- !u!1 &5324324412932925028
 GameObject:
   m_ObjectHideFlags: 0
