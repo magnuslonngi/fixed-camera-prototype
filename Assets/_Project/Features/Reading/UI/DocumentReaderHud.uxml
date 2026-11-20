@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="DocumentReaderHud.uss" />
+    <ui:VisualElement name="reader-overlay" class="reader-overlay" picking-mode="Ignore">
+        <ui:VisualElement class="reader-page" picking-mode="Ignore">
+            <ui:Label name="document-label" class="reader-page__text" picking-mode="Ignore" />
+        </ui:VisualElement>
+        <ui:Label text="Esc/Tab  close" class="reader-overlay__hint" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>

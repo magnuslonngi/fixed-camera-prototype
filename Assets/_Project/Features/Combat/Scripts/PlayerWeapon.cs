@@ -11,6 +11,9 @@ namespace FixedCameraPrototype.Combat
         [SerializeField] private PlayerAim m_playerAim;
         [SerializeField] private AimAssist m_aimAssist;
         [SerializeField] private Transform m_muzzle;
+        [SerializeField] private EquipmentSlot m_equipmentSlot;
+        [SerializeField] private ItemDefinition m_weaponItem;
+        [SerializeField] private WeaponMagazine m_magazine;
 
         [Header("Weapon")]
         [SerializeField] private float m_damage = 10.0f;
@@ -22,6 +25,7 @@ namespace FixedCameraPrototype.Combat
 
         public Vector3 MuzzlePosition => m_muzzle.position;
         public float RangeMeters => m_rangeMeters;
+        public bool IsEquipped => m_equipmentSlot.IsEquipped(m_weaponItem);
 
         public event Action<ShotResult> OnShotFired;
 
@@ -38,6 +42,11 @@ namespace FixedCameraPrototype.Combat
         private void HandleFirePressed()
         {
             if (!m_playerAim.IsAiming || Time.time < m_nextShotTime)
+            {
+                return;
+            }
+
+            if (!m_magazine.TryConsumeRound())
             {
                 return;
             }

@@ -1,0 +1,41 @@
+.inventory-prompt-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 24px;
+}
+
+.inventory-prompt {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background-color: rgba(20, 20, 20, 0.55);
+}
+
+.inventory-prompt--hidden {
+    display: none;
+}
+
+.inventory-prompt__key {
+    min-width: 44px;
+    -unity-text-align: middle-center;
+    color: rgb(20, 20, 20);
+    background-color: rgba(255, 255, 255, 0.92);
+    font-size: 16px;
+    -unity-font-style: bold;
+    padding: 4px 8px;
+    margin: 0 10px 0 0;
+    border-radius: 4px;
+    border-bottom-width: 3px;
+    border-color: rgba(150, 150, 150, 1);
+}
+
+.inventory-prompt__text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 18px;
+}

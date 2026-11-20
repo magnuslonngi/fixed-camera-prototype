@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement name="indicator" class="indicator" picking-mode="Ignore">
+        <ui:VisualElement name="indicator-dot" class="indicator__dot" picking-mode="Ignore" />
+        <ui:VisualElement name="indicator-prompt" class="indicator__prompt" picking-mode="Ignore">
+            <ui:Label name="indicator-prompt-label" class="indicator__prompt-label" text="E" picking-mode="Ignore" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

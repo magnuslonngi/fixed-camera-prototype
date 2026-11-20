@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="InventoryPromptHud.uss" />
+    <ui:VisualElement class="inventory-prompt-layer" picking-mode="Ignore">
+        <ui:VisualElement name="inventory-prompt" class="inventory-prompt" picking-mode="Ignore">
+            <ui:Label name="key-label" text="Tab" class="inventory-prompt__key" picking-mode="Ignore" />
+            <ui:Label text="Inventory" class="inventory-prompt__text" picking-mode="Ignore" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

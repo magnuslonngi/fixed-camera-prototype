@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="ItemExamineHud.uss" />
+    <ui:VisualElement name="examine-overlay" class="examine-overlay" picking-mode="Ignore">
+        <ui:VisualElement name="preview-image" class="examine-overlay__preview" picking-mode="Ignore" />
+        <ui:Label name="name-label" class="examine-overlay__name" picking-mode="Ignore" />
+        <ui:Label name="description-label" class="examine-overlay__description" picking-mode="Ignore" />
+        <ui:Label name="hint-label" class="examine-overlay__hint" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>

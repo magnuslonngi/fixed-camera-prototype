@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="InventoryScreenHud.uss" />
+    <ui:VisualElement name="inventory-screen" class="inventory-screen" picking-mode="Ignore">
+        <ui:Label name="title-label" text="Inventory" class="inventory-screen__title" picking-mode="Ignore" />
+        <ui:VisualElement class="inventory-screen__content" picking-mode="Ignore">
+            <ui:VisualElement class="inventory-screen__list-column" picking-mode="Ignore">
+                <ui:VisualElement name="item-list" class="inventory-screen__list" picking-mode="Ignore" />
+                <ui:Label name="empty-label" text="No items" class="inventory-screen__empty" picking-mode="Ignore" />
+                <ui:Label name="feedback-label" class="inventory-screen__feedback" picking-mode="Ignore" />
+            </ui:VisualElement>
+            <ui:VisualElement class="inventory-screen__preview-column" picking-mode="Ignore">
+                <ui:VisualElement name="preview-image" class="inventory-screen__preview" picking-mode="Ignore" />
+                <ui:Label name="description-label" class="inventory-screen__description" picking-mode="Ignore" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label name="hint-label" class="inventory-screen__hint" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>
