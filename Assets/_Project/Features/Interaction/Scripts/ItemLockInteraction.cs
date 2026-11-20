@@ -11,12 +11,15 @@ namespace FixedCameraPrototype.Interaction
         [SerializeField] private ItemDefinition m_requiredItem;
         [Tooltip("Model shown in the inventory while choosing an item to use here.")]
         [SerializeField] private GameObject m_previewPrefab;
+        [Tooltip("Brief description shown under the preview while choosing an item to use here.")]
+        [SerializeField, TextArea] private string m_descriptionText;
 
         private Interactable m_interactable;
         private bool m_isUnlocked;
 
         public bool IsUnlocked => m_isUnlocked;
         public GameObject PreviewPrefab => m_previewPrefab;
+        public string DescriptionText => m_descriptionText;
 
         public event Action OnUnlocked;
         public event Action<ItemDefinition> OnUnlockRejected;

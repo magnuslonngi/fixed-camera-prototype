@@ -110,11 +110,16 @@ namespace FixedCameraPrototype.Inventory
             RebuildItemList();
         }
 
-        // Target mode previews the target, so an item description would describe the wrong thing.
+        // Target mode previews the target, so the description must come from the target, not the selected item.
         private string ResolveDescriptionText(bool isBrowsing)
         {
+            if (!isBrowsing)
+            {
+                return m_selectionSession.ActiveTarget.DescriptionText;
+            }
+
             ItemDefinition selectedItem = m_selectionSession.SelectedItem;
-            return isBrowsing && selectedItem != null ? selectedItem.DescriptionText : string.Empty;
+            return selectedItem != null ? selectedItem.DescriptionText : string.Empty;
         }
 
         private void RebuildItemList()

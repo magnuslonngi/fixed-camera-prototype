@@ -8,6 +8,9 @@ namespace FixedCameraPrototype.Shared
         // Model shown while choosing which item to use on this target. May be null.
         GameObject PreviewPrefab { get; }
 
+        // Brief text shown under the preview while choosing which item to use on this target.
+        string DescriptionText { get; }
+
         bool TryUseItem(ItemDefinition item);
     }
 }
