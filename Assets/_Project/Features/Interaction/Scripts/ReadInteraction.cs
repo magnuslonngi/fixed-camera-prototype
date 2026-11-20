@@ -30,7 +30,7 @@ namespace FixedCameraPrototype.Interaction
 
         private void HandleInteracted(GameObject instigator)
         {
-            if (instigator.TryGetComponent(out IDocumentReader documentReader))
+            if (CapabilityRoot.TryFindCapability(instigator, out IDocumentReader documentReader))
             {
                 documentReader.OpenDocument(m_documentText);
             }

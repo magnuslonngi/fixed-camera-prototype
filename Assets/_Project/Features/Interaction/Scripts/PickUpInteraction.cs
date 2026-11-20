@@ -34,7 +34,7 @@ namespace FixedCameraPrototype.Interaction
 
         private void HandleInteracted(GameObject instigator)
         {
-            if (!instigator.TryGetComponent(out IItemReceiver itemReceiver) || !itemReceiver.TryAddItem(m_item, m_quantity))
+            if (!CapabilityRoot.TryFindCapability(instigator, out IItemReceiver itemReceiver) || !itemReceiver.TryAddItem(m_item, m_quantity))
             {
                 return;
             }
@@ -42,7 +42,7 @@ namespace FixedCameraPrototype.Interaction
             OnPickedUp?.Invoke(instigator);
             gameObject.SetActive(false);
 
-            if (instigator.TryGetComponent(out IItemExaminePrompt itemExaminePrompt))
+            if (CapabilityRoot.TryFindCapability(instigator, out IItemExaminePrompt itemExaminePrompt))
             {
                 itemExaminePrompt.ExamineItem(m_item);
             }

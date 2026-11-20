@@ -16,6 +16,8 @@ namespace FixedCameraPrototype.Combat
         [SerializeField] private AimAssist m_aimAssist;
         [SerializeField] private PlayerShotRecovery m_shotRecovery;
         [SerializeField] private Transform m_aimOrigin;
+        [Tooltip("Transform turned while aiming. Usually the character root.")]
+        [SerializeField] private Transform m_characterBody;
 
         [Header("Aiming (degrees)")]
         [SerializeField] private float m_turnSpeedDegreesPerSecond = 120.0f;
@@ -33,7 +35,7 @@ namespace FixedCameraPrototype.Combat
         public AimTier CurrentTier => ResolveTier(m_inputReader.AimAdjustInput.y);
         public Vector3 AimDirection => Quaternion.AngleAxis(-ResolvePitchDegrees(), Vector3.Cross(Vector3.up, AimForward)) * AimForward;
 
-        private Vector3 AimForward => Quaternion.AngleAxis(m_aimYawOffsetDegrees, Vector3.up) * transform.forward;
+        private Vector3 AimForward => Quaternion.AngleAxis(m_aimYawOffsetDegrees, Vector3.up) * m_characterBody.forward;
 
         public event Action<bool> OnAimingChanged;
 
@@ -79,7 +81,7 @@ namespace FixedCameraPrototype.Combat
 
         public bool TryFindSnapTarget(out IAimAssistTarget target)
         {
-            return m_aimAssist.TryFindAcquisitionTarget(transform.position, transform.forward, out target);
+            return m_aimAssist.TryFindAcquisitionTarget(m_characterBody.position, m_characterBody.forward, out target);
         }
 
         // NOTE(Design): The aim origin sits off the body's center and fires along m_aimYawOffsetDegrees from body forward
@@ -87,10 +89,10 @@ namespace FixedCameraPrototype.Combat
         // Solves the body yaw that places the target on the aim origin's line of fire.
         public bool TryCalculateSnapRotation(Vector3 targetPosition, out Quaternion snapRotation)
         {
-            snapRotation = transform.rotation;
+            snapRotation = m_characterBody.rotation;
 
-            Vector3 flatToTarget = Vector3.ProjectOnPlane(targetPosition - transform.position, Vector3.up);
-            Vector3 localOrigin = Vector3.ProjectOnPlane(transform.InverseTransformPoint(m_aimOrigin.position), Vector3.up);
+            Vector3 flatToTarget = Vector3.ProjectOnPlane(targetPosition - m_characterBody.position, Vector3.up);
+            Vector3 localOrigin = Vector3.ProjectOnPlane(m_characterBody.InverseTransformPoint(m_aimOrigin.position), Vector3.up);
             Vector3 localDirection = Quaternion.AngleAxis(m_aimYawOffsetDegrees, Vector3.up) * Vector3.forward;
             Vector3 localPerpendicular = Vector3.Cross(Vector3.up, localDirection);
 
@@ -132,17 +134,17 @@ namespace FixedCameraPrototype.Combat
             if (Mathf.Abs(turnInput) >= k_inputThreshold)
             {
                 m_isSnapping = false;
-                transform.Rotate(Vector3.up, Mathf.Sign(turnInput) * m_turnSpeedDegreesPerSecond * deltaTime, Space.World);
+                m_characterBody.Rotate(Vector3.up, Mathf.Sign(turnInput) * m_turnSpeedDegreesPerSecond * deltaTime, Space.World);
                 return;
             }
 
             if (m_isSnapping)
             {
-                transform.rotation = Quaternion.RotateTowards(
-                    transform.rotation,
+                m_characterBody.rotation = Quaternion.RotateTowards(
+                    m_characterBody.rotation,
                     m_snapRotation,
                     m_snapTurnSpeedDegreesPerSecond * deltaTime);
-                m_isSnapping = transform.rotation != m_snapRotation;
+                m_isSnapping = m_characterBody.rotation != m_snapRotation;
             }
         }
 

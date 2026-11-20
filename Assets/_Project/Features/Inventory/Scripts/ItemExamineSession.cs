@@ -27,7 +27,7 @@ namespace FixedCameraPrototype.Inventory
         private void Awake()
         {
             m_inputReader.enabled = false;
-            TryGetComponent(out m_documentReader);
+            CapabilityRoot.TryFindCapability(gameObject, out m_documentReader);
         }
 
         private void OnEnable()

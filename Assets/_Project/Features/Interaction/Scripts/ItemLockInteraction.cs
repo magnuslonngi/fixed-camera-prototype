@@ -52,7 +52,7 @@ namespace FixedCameraPrototype.Interaction
 
         private void HandleInteracted(GameObject instigator)
         {
-            if (instigator.TryGetComponent(out IItemSelectionPrompt itemSelectionPrompt))
+            if (CapabilityRoot.TryFindCapability(instigator, out IItemSelectionPrompt itemSelectionPrompt))
             {
                 itemSelectionPrompt.BeginItemSelection(this);
             }

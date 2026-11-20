@@ -69,7 +69,7 @@ namespace FixedCameraPrototype.Inventory
             m_selectionSession.OnItemRejected += ShowRejectionFeedback;
             m_equipmentSlot.OnEquippedItemChanged += HandleEquippedItemChanged;
 
-            if (m_inventory.TryGetComponent(out m_itemStatusSource))
+            if (CapabilityRoot.TryFindCapability(m_inventory.gameObject, out m_itemStatusSource))
             {
                 m_itemStatusSource.OnStatusChanged += Refresh;
             }

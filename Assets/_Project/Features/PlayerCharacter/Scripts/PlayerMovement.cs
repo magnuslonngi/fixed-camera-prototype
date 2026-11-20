@@ -4,7 +4,6 @@ using FixedCameraPrototype.Shared;
 
 namespace FixedCameraPrototype.PlayerCharacter
 {
-    [RequireComponent(typeof(CharacterController))]
     public class PlayerMovement : MonoBehaviour
     {
         private const float k_maximumInputMagnitude = 1.0f;
@@ -17,6 +16,7 @@ namespace FixedCameraPrototype.PlayerCharacter
         [SerializeField] private PlayerInputReader m_inputReader;
         [SerializeField] private CameraRelativeInputBasis m_inputBasis;
         [SerializeField] private MovementLock m_movementLock;
+        [SerializeField] private CharacterController m_characterController;
 
         [Header("Speed (meters per second)")]
         [SerializeField] private float m_walkSpeed = 1.8f;
@@ -26,7 +26,6 @@ namespace FixedCameraPrototype.PlayerCharacter
         [SerializeField] private float m_decelerationRate = 30.0f;
         [SerializeField] private float m_gravity = 20.0f;
 
-        private CharacterController m_characterController;
         private Vector3 m_horizontalVelocity;
         private float m_verticalVelocity;
 
@@ -40,14 +39,9 @@ namespace FixedCameraPrototype.PlayerCharacter
 
         // Camera-relative input faces the player along its movement, so only tank reversing walks backward.
         private bool IsMovingBackward => DesiredDirection.sqrMagnitude <= 0.0f
-            && Vector3.Dot(m_horizontalVelocity, transform.forward) < 0.0f;
+            && Vector3.Dot(m_horizontalVelocity, m_characterController.transform.forward) < 0.0f;
 
         public event Action<float, bool> OnLocomotionChanged;
-
-        private void Awake()
-        {
-            m_characterController = GetComponent<CharacterController>();
-        }
 
         private void Update()
         {
@@ -94,7 +88,7 @@ namespace FixedCameraPrototype.PlayerCharacter
             float forwardSpeed = m_inputReader.IsSprintHeld ? m_runSpeed : m_walkSpeed;
             float tankSpeed = TankThrottleInput >= 0.0f ? forwardSpeed : m_backwardWalkSpeed;
             Vector3 cameraRelativeVelocity = DesiredDirection * forwardSpeed;
-            Vector3 tankVelocity = transform.forward * (TankThrottleInput * tankSpeed);
+            Vector3 tankVelocity = m_characterController.transform.forward * (TankThrottleInput * tankSpeed);
             return Vector3.ClampMagnitude(cameraRelativeVelocity + tankVelocity, forwardSpeed);
         }
 

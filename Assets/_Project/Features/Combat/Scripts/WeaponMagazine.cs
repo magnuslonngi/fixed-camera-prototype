@@ -30,7 +30,7 @@ namespace FixedCameraPrototype.Combat
         private void Awake()
         {
             m_loadedRounds = m_capacity;
-            TryGetComponent(out m_reserveStock);
+            CapabilityRoot.TryFindCapability(gameObject, out m_reserveStock);
         }
 
         public bool TryConsumeRound()

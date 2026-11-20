@@ -5,6 +5,8 @@ namespace FixedCameraPrototype.PlayerCharacter
     public class PlayerRotation : MonoBehaviour
     {
         [SerializeField] private PlayerMovement m_playerMovement;
+        [Tooltip("Transform turned to face movement. Usually the character root.")]
+        [SerializeField] private Transform m_characterBody;
         [SerializeField] private float m_turnSpeedDegreesPerSecond = 540.0f;
         [SerializeField] private float m_tankTurnSpeedDegreesPerSecond = 150.0f;
 
@@ -28,7 +30,7 @@ namespace FixedCameraPrototype.PlayerCharacter
         private void ApplyTankTurn(float deltaTime)
         {
             float turnDegrees = m_playerMovement.TankTurnInput * m_tankTurnSpeedDegreesPerSecond * deltaTime;
-            transform.Rotate(Vector3.up, turnDegrees, Space.World);
+            m_characterBody.Rotate(Vector3.up, turnDegrees, Space.World);
         }
 
         private void ApplyCameraRelativeTurn(float deltaTime)
@@ -40,8 +42,8 @@ namespace FixedCameraPrototype.PlayerCharacter
             }
 
             Quaternion targetRotation = Quaternion.LookRotation(desiredDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation,
+            m_characterBody.rotation = Quaternion.RotateTowards(
+                m_characterBody.rotation,
                 targetRotation,
                 m_turnSpeedDegreesPerSecond * deltaTime);
         }

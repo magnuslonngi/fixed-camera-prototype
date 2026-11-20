@@ -20,7 +20,7 @@ namespace FixedCameraPrototype.PlayerCharacter
 
         private void Awake()
         {
-            TryGetComponent(out m_aimStateSource);
+            CapabilityRoot.TryFindCapability(gameObject, out m_aimStateSource);
         }
 
         private void OnEnable()
