@@ -12,6 +12,8 @@ namespace FixedCameraPrototype.Interaction
     {
         [SerializeField] private ItemDefinition m_item;
         [SerializeField] private int m_quantity = 1;
+        [Tooltip("Optional. Raised after the item is stored, for level scripting that reacts to this pickup.")]
+        [SerializeField] private GameplayEventChannel m_pickedUpEventChannel;
 
         private Interactable m_interactable;
 
@@ -40,6 +42,11 @@ namespace FixedCameraPrototype.Interaction
             }
 
             OnPickedUp?.Invoke(instigator);
+            if (m_pickedUpEventChannel != null)
+            {
+                m_pickedUpEventChannel.Raise();
+            }
+
             gameObject.SetActive(false);
 
             if (CapabilityRoot.TryFindCapability(instigator, out IItemExaminePrompt itemExaminePrompt))

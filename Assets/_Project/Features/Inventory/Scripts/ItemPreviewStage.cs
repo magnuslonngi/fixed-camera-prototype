@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace FixedCameraPrototype.Inventory
 {
@@ -8,6 +10,7 @@ namespace FixedCameraPrototype.Inventory
     {
         private const int k_renderTextureDepthBits = 24;
         private const float k_halfAngleDivisor = 2.0f;
+        private static readonly int s_cullPropertyId = Shader.PropertyToID("_Cull");
 
         [SerializeField] private Camera m_previewCamera;
         [SerializeField] private Transform m_modelPivot;
@@ -19,6 +22,7 @@ namespace FixedCameraPrototype.Inventory
         private RenderTexture m_previewTexture;
         private GameObject m_shownPrefab;
         private GameObject m_modelInstance;
+        private readonly List<Material> m_doubleSidedMaterials = new List<Material>();
 
         // Created lazily so views can bind it in OnEnable regardless of Awake order.
         public RenderTexture PreviewTexture
@@ -44,6 +48,7 @@ namespace FixedCameraPrototype.Inventory
 
         private void OnDestroy()
         {
+            DestroyDoubleSidedMaterials();
             if (m_previewTexture != null)
             {
                 m_previewTexture.Release();
@@ -89,6 +94,7 @@ namespace FixedCameraPrototype.Inventory
                 Destroy(m_modelInstance);
             }
 
+            DestroyDoubleSidedMaterials();
             m_modelInstance = null;
             m_shownPrefab = null;
             m_modelPivot.localRotation = Quaternion.identity;
@@ -112,6 +118,48 @@ namespace FixedCameraPrototype.Inventory
             {
                 modelTransform.gameObject.layer = gameObject.layer;
             }
+
+            MakeRenderersDoubleSided(modelInstance);
+        }
+
+        // World meshes are often single-sided planes; the spinning preview shows their backs, so the
+        // preview gets its own culling-off copies and never alters the materials used in the level.
+        private void MakeRenderersDoubleSided(GameObject modelInstance)
+        {
+            foreach (Renderer modelRenderer in modelInstance.GetComponentsInChildren<Renderer>(true))
+            {
+                Material[] sharedMaterials = modelRenderer.sharedMaterials;
+                Material[] doubleSidedMaterials = new Material[sharedMaterials.Length];
+                for (int i = 0; i < sharedMaterials.Length; i++)
+                {
+                    doubleSidedMaterials[i] = CreateDoubleSidedCopy(sharedMaterials[i]);
+                }
+
+                modelRenderer.sharedMaterials = doubleSidedMaterials;
+            }
+        }
+
+        private Material CreateDoubleSidedCopy(Material sourceMaterial)
+        {
+            if (sourceMaterial == null || !sourceMaterial.HasProperty(s_cullPropertyId))
+            {
+                return sourceMaterial;
+            }
+
+            Material doubleSidedMaterial = new Material(sourceMaterial);
+            doubleSidedMaterial.SetFloat(s_cullPropertyId, (float)CullMode.Off);
+            m_doubleSidedMaterials.Add(doubleSidedMaterial);
+            return doubleSidedMaterial;
+        }
+
+        private void DestroyDoubleSidedMaterials()
+        {
+            foreach (Material doubleSidedMaterial in m_doubleSidedMaterials)
+            {
+                Destroy(doubleSidedMaterial);
+            }
+
+            m_doubleSidedMaterials.Clear();
         }
 
         private void FrameModel(GameObject modelInstance)

@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c94c0b072acb479ca832b862becf59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.Health
-  m_maxHealth: 100
+  m_maxHealth: 80
 --- !u!114 &6368383768369575820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
   m_attack: {fileID: 3623106041318817324}
   m_attackDurationSeconds: 1.4
   m_staggerSeconds: 0.6
+  m_staggerCooldownSeconds: 1.5
 --- !u!114 &9209409950038078469
 MonoBehaviour:
   m_ObjectHideFlags: 0

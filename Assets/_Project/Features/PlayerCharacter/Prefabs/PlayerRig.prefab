@@ -370,7 +370,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2931313549395249816, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
       propertyPath: m_maxStamina
-      value: 75
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 2931313549395249816, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
       propertyPath: m_sprintDrainPerSecond
@@ -382,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2931313549395249816, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
       propertyPath: m_regenerationDelaySeconds
-      value: 1.8
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 3550176799746882708, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
       propertyPath: m_runSpeed
@@ -390,7 +390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3550176799746882708, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
       propertyPath: m_walkSpeed
-      value: 1.1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3550176799746882708, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
       propertyPath: m_backwardWalkSpeed

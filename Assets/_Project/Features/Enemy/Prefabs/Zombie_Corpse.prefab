@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6640815910440564189
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1144344371010908568, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_Name
+      value: Zombie_Corpse
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236622786321999263, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4895196631236964968, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 9209409950038078469, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 8362094024208204409, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 3623106041318817324, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 8116757181219254258, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 6368383768369575820, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 5145088510219236019, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 8205537673814812017, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 9051272380166183421, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 4311999847073666417, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 4583512462842867129, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 8886256378725121534, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 1639427234494130957, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 128487591043231254, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 1250603633829992, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 1833819684467520910, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    - {fileID: 8163122995104349858, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 5769789409056893287, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3438350759810055935, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 694575522066733559}
+  m_SourcePrefab: {fileID: 100100000, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+--- !u!95 &3329408440982555618 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8222594030435941951, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+  m_PrefabInstance: {fileID: 6640815910440564189}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8331539662833077026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3438350759810055935, guid: 65bc1669b4fc0486eb56cb5a56f0e684, type: 3}
+  m_PrefabInstance: {fileID: 6640815910440564189}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &694575522066733559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8331539662833077026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0580963252be40d6bd555281d6a574e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Enemy::FixedCameraPrototype.Enemy.CorpsePosePresenter
+  m_animator: {fileID: 3329408440982555618}

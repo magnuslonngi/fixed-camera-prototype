@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0137cc19cd12b4cd49c157f9716da74d, type: 3}
+  m_Name: ControlsNoteItem
+  m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.ItemDefinition
+  m_displayName: Crumpled Note
+  m_useAction: 1
+  m_isStackable: 0
+  m_previewPrefab: {fileID: 7821697728655158839, guid: de0f0460a5b8442098ed6e41118a58b3, type: 3}
+  m_descriptionText: Left right next to you. Someone wanted you to read it.
+  m_readableText: "If you're reading this, they dumped you here too.\n\nThey throw
+    out anything that runs on batteries now. Get up and move.\n\nMOVING\n  Modern:
+    W A S D moves you the way the view is looking.\n  Tank: Up / Down walks forward
+    and back, Left / Right turns in place.\n  Hold Shift to run. Running wears you
+    out.\n\nE to take things. Tab to check what you carry.\n\nStay quiet. They hunt
+    anything that moves."
