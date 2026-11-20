@@ -17,10 +17,11 @@ namespace FixedCameraPrototype.PlayerCharacter
         [SerializeField] private CameraRelativeInputBasis m_inputBasis;
         [SerializeField] private MovementLock m_movementLock;
         [SerializeField] private CharacterController m_characterController;
+        [SerializeField] private PlayerStamina m_stamina;
 
         [Header("Speed (meters per second)")]
-        [SerializeField] private float m_walkSpeed = 1.8f;
-        [SerializeField] private float m_runSpeed = 4.0f;
+        [SerializeField] private float m_walkSpeed = 1.3f;
+        [SerializeField] private float m_runSpeed = 2.6f;
         [SerializeField] private float m_backwardWalkSpeed = 1.2f;
         [SerializeField] private float m_accelerationRate = 20.0f;
         [SerializeField] private float m_decelerationRate = 30.0f;
@@ -35,7 +36,7 @@ namespace FixedCameraPrototype.PlayerCharacter
         public float NormalizedSpeed => IsMovingBackward
             ? -CalculateBackwardNormalizedSpeed(m_horizontalVelocity.magnitude)
             : CalculateNormalizedSpeed(m_horizontalVelocity.magnitude);
-        public bool IsRunning => m_inputReader.IsSprintHeld && (DesiredDirection.sqrMagnitude > 0.0f || TankThrottleInput > 0.0f);
+        public bool IsRunning => m_inputReader.IsSprintHeld && m_stamina.CanSprint && HasForwardMovementInput();
 
         // Camera-relative input faces the player along its movement, so only tank reversing walks backward.
         private bool IsMovingBackward => DesiredDirection.sqrMagnitude <= 0.0f
@@ -48,6 +49,7 @@ namespace FixedCameraPrototype.PlayerCharacter
             UpdateDesiredDirection();
             UpdateTankInput();
             UpdateHorizontalVelocity(Time.deltaTime);
+            DrainStaminaWhileRunning(Time.deltaTime);
             UpdateVerticalVelocity(Time.deltaTime);
 
             Vector3 displacement = (m_horizontalVelocity + (Vector3.up * m_verticalVelocity)) * Time.deltaTime;
@@ -78,6 +80,19 @@ namespace FixedCameraPrototype.PlayerCharacter
             TankThrottleInput = isLocked ? 0.0f : m_inputReader.TankThrottleInput;
         }
 
+        private bool HasForwardMovementInput()
+        {
+            return DesiredDirection.sqrMagnitude > 0.0f || TankThrottleInput > 0.0f;
+        }
+
+        private void DrainStaminaWhileRunning(float deltaTime)
+        {
+            if (IsRunning)
+            {
+                m_stamina.DrainForSprint(deltaTime);
+            }
+        }
+
         private bool HasMovementInput()
         {
             return DesiredDirection.sqrMagnitude > 0.0f || !Mathf.Approximately(TankThrottleInput, 0.0f);
@@ -85,7 +100,7 @@ namespace FixedCameraPrototype.PlayerCharacter
 
         private Vector3 CalculateTargetVelocity()
         {
-            float forwardSpeed = m_inputReader.IsSprintHeld ? m_runSpeed : m_walkSpeed;
+            float forwardSpeed = IsRunning ? m_runSpeed : m_walkSpeed;
             float tankSpeed = TankThrottleInput >= 0.0f ? forwardSpeed : m_backwardWalkSpeed;
             Vector3 cameraRelativeVelocity = DesiredDirection * forwardSpeed;
             Vector3 tankVelocity = m_characterController.transform.forward * (TankThrottleInput * tankSpeed);

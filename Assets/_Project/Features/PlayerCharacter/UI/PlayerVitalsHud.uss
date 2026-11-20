@@ -1,0 +1,39 @@
+.vitals-hud {
+    position: absolute;
+    left: 32px;
+    top: 32px;
+    width: 240px;
+}
+
+.vitals-hud__bar {
+    height: 16px;
+    padding: 2px;
+    margin-bottom: 6px;
+    background-color: rgba(10, 10, 10, 0.7);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.vitals-hud__bar--stamina {
+    height: 10px;
+}
+
+.vitals-hud__health-fill,
+.vitals-hud__stamina-fill {
+    height: 100%;
+    width: 100%;
+}
+
+.vitals-hud__health-fill {
+    background-color: rgb(170, 30, 30);
+}
+
+.vitals-hud__stamina-fill {
+    background-color: rgb(210, 180, 60);
+    transition-property: background-color;
+    transition-duration: 0.2s;
+}
+
+.vitals-hud__stamina-fill--exhausted {
+    background-color: rgb(110, 110, 110);
+}

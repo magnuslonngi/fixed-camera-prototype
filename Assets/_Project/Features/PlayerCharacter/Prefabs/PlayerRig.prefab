@@ -340,12 +340,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3726725897525467931, guid: 52e2d88b8f2b441969e5fe45c3fcea7a, type: 3}
       propertyPath: m_Name
-      value: PlayerHealthHud
+      value: PlayerVitalsHud
       objectReference: {fileID: 0}
     - target: {fileID: 6134353154254324489, guid: 52e2d88b8f2b441969e5fe45c3fcea7a, type: 3}
       propertyPath: m_health
       value: 
       objectReference: {fileID: 5926526502577970953}
+    - target: {fileID: 9034093636443549463, guid: 52e2d88b8f2b441969e5fe45c3fcea7a, type: 3}
+      propertyPath: m_stamina
+      value: 
+      objectReference: {fileID: 6799629529343471333}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -462,6 +466,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c94c0b072acb479ca832b862becf59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.Health
+--- !u!114 &6799629529343471333 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2931313549395249816, guid: 12be7c3271f8d441eba169221ccada56, type: 3}
+  m_PrefabInstance: {fileID: 8571261738903168125}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 587f94c02573947ca8ab6ff11f65e157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerStamina
 --- !u!114 &8298426722195558161 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 421880415023475564, guid: 12be7c3271f8d441eba169221ccada56, type: 3}

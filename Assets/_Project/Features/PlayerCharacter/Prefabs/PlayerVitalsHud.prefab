@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1967067807997258310}
   - component: {fileID: 6095754585412483124}
   - component: {fileID: 6134353154254324489}
+  - component: {fileID: 9034093636443549463}
   m_Layer: 0
-  m_Name: PlayerHealthHud
+  m_Name: PlayerVitalsHud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,3 +70,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerHealthHud
   m_health: {fileID: 0}
+--- !u!114 &9034093636443549463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726725897525467931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101ba8ab3aa9a47b6b1093daca7b72a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerStaminaHud
+  m_stamina: {fileID: 0}
