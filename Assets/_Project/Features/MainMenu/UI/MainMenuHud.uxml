@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/Features/MainMenu/UI/MainMenuHud.uss?fileID=7433441132597879392&amp;guid=1a0f2d2a3618743c2bd1fbbdabc0b3ae&amp;type=3#MainMenuHud"/>
+    <Style src="project://database/Assets/_Project/Shared/UI/MenuOptionList.uss?fileID=7433441132597879392&amp;guid=d8a112b919d48483896443ac3e069060&amp;type=3#MenuOptionList"/>
+    <ui:VisualElement name="main-menu-screen" picking-mode="Ignore" class="main-menu-screen">
+        <ui:Label text="Another RE like game in Unity" picking-mode="Ignore" class="main-menu-screen__title"/>
+        <ui:VisualElement name="option-list" picking-mode="Ignore" class="main-menu-screen__options"/>
+        <ui:Label text="W/S ↑/↓  select     Enter  confirm" picking-mode="Ignore" class="main-menu-screen__hint"/>
+    </ui:VisualElement>
+</ui:UXML>

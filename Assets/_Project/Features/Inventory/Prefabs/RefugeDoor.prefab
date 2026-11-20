@@ -1,0 +1,207 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5171285465788796918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8200755476705963061}
+  m_Layer: 0
+  m_Name: IndicatorAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8200755476705963061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171285465788796918}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: -0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4308488763309033902}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7534612513239885432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4308488763309033902}
+  - component: {fileID: 371282417087183390}
+  - component: {fileID: 5255245965817844630}
+  - component: {fileID: 8827609567321090533}
+  m_Layer: 0
+  m_Name: RefugeDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4308488763309033902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534612513239885432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8200755476705963061}
+  - {fileID: 2984975431751501323}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &371282417087183390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534612513239885432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c998ec477763e4e95b5ea196cff3cab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.Interactable
+  m_noticeRadiusMeters: 4
+  m_interactRadiusMeters: 1.5
+  m_indicatorAnchor: {fileID: 8200755476705963061}
+--- !u!114 &5255245965817844630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534612513239885432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4c118335a01453d9238277edb0fe31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.ItemLockInteraction
+  m_requiredItem: {fileID: 11400000, guid: 62d1f3394fe054ffdb59b4bf8efe548e, type: 2}
+  m_previewPrefab: {fileID: 6922630412197623994, guid: e58509d8aa22947fabc95cb6701ab798, type: 3}
+  m_descriptionText: A heavy door under the lamp. Locked. It needs a key.
+--- !u!114 &8827609567321090533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534612513239885432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787c81ce6cbbc4543b0d113e0604aaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Interaction::FixedCameraPrototype.Interaction.DoorOpenPresenter
+  m_itemLock: {fileID: 5255245965817844630}
+  m_doorObject: {fileID: 8179433653149489835}
+--- !u!1 &8179433653149489835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2984975431751501323}
+  m_Layer: 0
+  m_Name: Door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2984975431751501323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179433653149489835}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7443209951796082411}
+  m_Father: {fileID: 4308488763309033902}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7447291560646298575
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2984975431751501323}
+    m_Modifications:
+    - target: {fileID: 1579822722412954, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_Name
+      value: streetdoor single
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000004371139
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+--- !u!4 &7443209951796082411 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4926037148532004, guid: 9af3b31fa34f0854d9bab7b647b55368, type: 3}
+  m_PrefabInstance: {fileID: 7447291560646298575}
+  m_PrefabAsset: {fileID: 0}

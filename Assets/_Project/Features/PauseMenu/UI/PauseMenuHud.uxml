@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="PauseMenuHud.uss" />
+    <Style src="../../../Shared/UI/MenuOptionList.uss" />
+    <ui:VisualElement name="pause-screen" class="pause-screen" picking-mode="Ignore">
+        <ui:Label text="Paused" class="pause-screen__title" picking-mode="Ignore" />
+        <ui:VisualElement name="option-list" class="pause-screen__options" picking-mode="Ignore" />
+        <ui:Label text="W/S ↑/↓  select     Enter  confirm     Esc  resume" class="pause-screen__hint" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>

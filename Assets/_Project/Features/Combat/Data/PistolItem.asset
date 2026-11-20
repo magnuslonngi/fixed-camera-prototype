@@ -16,5 +16,8 @@ MonoBehaviour:
   m_useAction: 0
   m_isStackable: 0
   m_previewPrefab: {fileID: 4043241439066821443, guid: 726cd21416e138640a4f2575ffe04009, type: 3}
-  m_descriptionText: A compact pistol.
+  m_descriptionText: 'A compact pistol. Equip it from the inventory (Tab).
+
+    Hold
+    Q to aim, Up/Down picks head or legs, Left/Right adjusts, Space fires, R reloads.'
   m_readableText: 

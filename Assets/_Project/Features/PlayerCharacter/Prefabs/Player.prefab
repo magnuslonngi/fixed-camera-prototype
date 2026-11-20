@@ -669,6 +669,7 @@ Transform:
   - {fileID: 7588801226571309846}
   - {fileID: 2612035961914333485}
   - {fileID: 6463100052820267930}
+  - {fileID: 4263217586019941326}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &2677790282899564320
@@ -964,6 +965,87 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.PlayerCharacter::FixedCameraPrototype.PlayerCharacter.PlayerHitInvulnerability
   m_health: {fileID: 2651632095950109556}
   m_invulnerabilitySecondsAfterHit: 1.5
+--- !u!1 &5122133676154340347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4263217586019941326}
+  - component: {fileID: 8815953065862277937}
+  - component: {fileID: 5408812799603769585}
+  - component: {fileID: 3957084258611573733}
+  m_Layer: 0
+  m_Name: PauseMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4263217586019941326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122133676154340347}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8501518198497356419}
+  m_Father: {fileID: 5548434985695489100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8815953065862277937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122133676154340347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103f6dea0f81b4ab1b1749eda92da72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.MenuOptionCursor
+  m_inputReader: {fileID: 4538854654956733388}
+--- !u!114 &5408812799603769585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122133676154340347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a8fa20566b34d24a423f3dfd88707e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.PauseMenu::FixedCameraPrototype.PauseMenu.PauseInputReader
+  m_pauseAction: {fileID: 1581444889775232177, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_controlLock: {fileID: 5662078600284701902}
+--- !u!114 &3957084258611573733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122133676154340347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e899b107b1fcf4eba9a21c05ae0e93d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.PauseMenu::FixedCameraPrototype.PauseMenu.PauseMenuSession
+  m_modalStack: {fileID: 249968317635378068}
+  m_inputReader: {fileID: 4538854654956733388}
+  m_optionCursor: {fileID: 8815953065862277937}
+  m_pauseInputReader: {fileID: 5408812799603769585}
+  m_mainMenuScene:
+    m_sceneAsset: {fileID: 102900000, guid: f0848f13ee21140ba9e9a2d73c142ca3, type: 3}
+    m_scenePath: Assets/_Project/Scenes/MainMenu.unity
 --- !u!1 &5324324412932925028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +1387,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: FixedCameraPrototype.Reading::FixedCameraPrototype.Reading.DocumentReader
   m_modalStack: {fileID: 249968317635378068}
   m_inputReader: {fileID: 2248698920208666494}
+--- !u!1 &6366624999627663302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8501518198497356419}
+  - component: {fileID: 4538854654956733388}
+  m_Layer: 0
+  m_Name: PauseMenuInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8501518198497356419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366624999627663302}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4263217586019941326}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4538854654956733388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366624999627663302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d0b1328d0b6400eb4693ac6e4342e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FixedCameraPrototype.Shared::FixedCameraPrototype.Shared.MenuInputReader
+  m_navigateAction: {fileID: -8784545083839296357, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_submitAction: {fileID: 392368643174621059, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_cancelAction: {fileID: 7727032971491509709, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &6584575475412108315
 GameObject:
   m_ObjectHideFlags: 0
