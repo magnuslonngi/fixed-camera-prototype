@@ -198,7 +198,7 @@ MonoBehaviour:
   m_hitReachToleranceMeters: 0.4
   m_maxAttackAngleDegrees: 25
   m_damage: 20
-  m_hitDelaySeconds: 0.7
+  m_hitDelaySeconds: 0.35
   m_cooldownSeconds: 1.8
 --- !u!114 &8362094024208204409
 MonoBehaviour:

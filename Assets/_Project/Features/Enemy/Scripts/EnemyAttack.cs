@@ -14,7 +14,7 @@ namespace FixedCameraPrototype.Enemy
         [SerializeField] private float m_maxAttackAngleDegrees = 25.0f;
         [SerializeField] private float m_damage = 20.0f;
         [Tooltip("Delay from attack start to the moment the blow lands in the attack animation.")]
-        [SerializeField] private float m_hitDelaySeconds = 0.7f;
+        [SerializeField] private float m_hitDelaySeconds = 0.35f;
         [SerializeField] private float m_cooldownSeconds = 1.8f;
 
         private float m_nextAttackTime;
