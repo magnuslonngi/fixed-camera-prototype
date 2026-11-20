@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="PlayerVitalsHud.uss" />
+    <ui:VisualElement name="vitals-hud" class="vitals-hud" picking-mode="Ignore">
+        <ui:VisualElement class="vitals-hud__bar" picking-mode="Ignore">
+            <ui:VisualElement name="health-fill" class="vitals-hud__health-fill" picking-mode="Ignore" />
+        </ui:VisualElement>
+        <ui:VisualElement class="vitals-hud__bar vitals-hud__bar--stamina" picking-mode="Ignore">
+            <ui:VisualElement name="stamina-fill" class="vitals-hud__stamina-fill" picking-mode="Ignore" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

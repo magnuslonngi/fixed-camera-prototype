@@ -7,10 +7,13 @@ namespace FixedCameraPrototype.PlayerCharacter
     {
         private static readonly int s_moveSpeedHash = Animator.StringToHash("MoveSpeed");
         private static readonly int s_isAimingHash = Animator.StringToHash("IsAiming");
+        private static readonly int s_hurtHash = Animator.StringToHash("Hurt");
+        private static readonly int s_isDeadHash = Animator.StringToHash("IsDead");
 
         [Header("References")]
         [SerializeField] private Animator m_animator;
         [SerializeField] private PlayerMovement m_playerMovement;
+        [SerializeField] private Health m_health;
 
         [Header("Blending (seconds)")]
         [SerializeField] private float m_moveSpeedDampSeconds = 0.1f;
@@ -26,6 +29,8 @@ namespace FixedCameraPrototype.PlayerCharacter
         private void OnEnable()
         {
             m_playerMovement.OnLocomotionChanged += HandleLocomotionChanged;
+            m_health.OnHealthChanged += HandleHealthChanged;
+            m_health.OnDied += HandleDied;
 
             if (m_aimStateSource != null)
             {
@@ -37,6 +42,8 @@ namespace FixedCameraPrototype.PlayerCharacter
         private void OnDisable()
         {
             m_playerMovement.OnLocomotionChanged -= HandleLocomotionChanged;
+            m_health.OnHealthChanged -= HandleHealthChanged;
+            m_health.OnDied -= HandleDied;
 
             if (m_aimStateSource != null)
             {
@@ -52,6 +59,20 @@ namespace FixedCameraPrototype.PlayerCharacter
         private void HandleAimingChanged(bool isAiming)
         {
             m_animator.SetBool(s_isAimingHash, isAiming);
+        }
+
+        private void HandleHealthChanged(float currentHealth, float maxHealth)
+        {
+            if (!m_health.IsDead)
+            {
+                m_animator.SetTrigger(s_hurtHash);
+            }
+        }
+
+        private void HandleDied()
+        {
+            m_animator.ResetTrigger(s_hurtHash);
+            m_animator.SetBool(s_isDeadHash, true);
         }
     }
 }
