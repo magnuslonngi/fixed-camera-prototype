@@ -1,0 +1,34 @@
+.pause-screen {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(12, 12, 14, 0.85);
+}
+
+.pause-screen--visible {
+    display: flex;
+}
+
+.pause-screen__title {
+    color: rgb(255, 255, 255);
+    font-size: 48px;
+    -unity-font-style: bold;
+    margin: 0 0 64px 0;
+}
+
+.pause-screen__options {
+    width: 360px;
+    flex-direction: column;
+}
+
+.pause-screen__hint {
+    position: absolute;
+    bottom: 56px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+}

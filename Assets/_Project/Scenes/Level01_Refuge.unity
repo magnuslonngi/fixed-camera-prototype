@@ -11464,6 +11464,9 @@ MonoBehaviour:
 
 
     End of the level.'
+  m_mainMenuScene:
+    m_sceneAsset: {fileID: 102900000, guid: f0848f13ee21140ba9e9a2d73c142ca3, type: 3}
+    m_scenePath: Assets/_Project/Scenes/MainMenu.unity
 --- !u!65 &453433924
 BoxCollider:
   m_ObjectHideFlags: 0

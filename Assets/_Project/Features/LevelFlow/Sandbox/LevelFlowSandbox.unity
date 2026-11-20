@@ -795,6 +795,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FixedCameraPrototype.LevelFlow::FixedCameraPrototype.LevelFlow.LevelCompleteTrigger
   m_completionText: 'SANDBOX: level complete.'
+  m_mainMenuScene:
+    m_sceneAsset: {fileID: 102900000, guid: f0848f13ee21140ba9e9a2d73c142ca3, type: 3}
+    m_scenePath: Assets/_Project/Scenes/MainMenu.unity
 --- !u!65 &1426945878
 BoxCollider:
   m_ObjectHideFlags: 0
